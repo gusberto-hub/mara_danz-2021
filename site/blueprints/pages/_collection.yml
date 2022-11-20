@@ -1,0 +1,72 @@
+title: Projects
+
+tabs:
+  lookbook:
+    label: lookbook
+    columns:
+      main:
+        width: 1/1
+        sections:
+          info:
+            type: fields
+            fields:
+              description:
+                label: Description
+                type: textarea
+                size: small
+                width: 1/1
+
+      sidebar:
+        width: 1/1
+        sections:
+          published:
+            headline: uploaded images
+            type: files
+            status: listed
+            layout: cards
+            size: small
+            image:
+              cover: false
+              ratio: 1/1.5
+              back: black
+
+      # commissions_unlisted:
+      #   headline: Unlisted
+      #   type: pages
+      #   parent: site.find("projects/commissions")
+      #   status: unlisted
+
+      # commissions_drafts:
+      #   headline: Drafts
+      #   type: pages
+      #   parent: site.find("projects/commissions")
+      #   status: draft
+      #   template: project
+
+  campaign:
+    # label: Campaign
+    # sections:
+    #   personal:
+    #     headline: published
+    #     type: pages
+    #     layout: cards
+    #     size: small
+    #     image:
+    #       cover: false
+    #       ratio: 2/3
+    #       back: black
+    #     parent: site.find("projects/personal")
+    #     status: listed
+
+    #   personal_unlisted:
+    #     headline: Unlisted
+    #     type: pages
+    #     parent: site.find("projects/personal")
+    #     status: unlisted
+
+    #   personal_drafts:
+    #     headline: Drafts
+    #     type: pages
+    #     parent: site.find("projects/personal")
+    #     status: draft
+    #     template: project

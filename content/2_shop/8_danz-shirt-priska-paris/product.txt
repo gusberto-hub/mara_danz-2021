@@ -1,0 +1,70 @@
+Title: DANZ Shirt Priska Paris
+
+----
+
+Name: Shirt Priska Paris
+
+----
+
+Available: true
+
+----
+
+Item-reloved: false
+
+----
+
+Price: 650
+
+----
+
+Identifier: TS_01a_2022
+
+----
+
+Sizes: S, M, L
+
+----
+
+Category: Tops/shirts
+
+----
+
+Description:
+
+DANZ Shirt Priska Paris
+Fabric
+deadstock 100% cotton
+flower applications deadstock velour
+Prints redesigned by DANZ and silkscreenprinted in Mitlödi, Switzerland
+
+The dress is 100% designed and produced in Switzerland
+
+----
+
+Custom-fields:
+
+- 
+  title: Model
+  cf_content: "Model Semaya is 178cm tall. She is wearing the Shirt 'Priska Paris' in size S and the trousers 'Elani Texas' in size M"
+- 
+  title: Delivery
+  cf_content: |
+    delivery time 3-5 weeks
+    the clothes are only produced after the order has been placed in order to use the resources consciously and to avoid overproduction
+
+----
+
+Primaryimage:
+
+- dsc_3428-kopie.jpg
+
+----
+
+Secondaryimage:
+
+- shirt_priska_paris_202200002.jpg
+
+----
+
+Customfield: 

@@ -1,0 +1,9 @@
+Alt: 
+
+----
+
+Fullscreen: true
+
+----
+
+Template: blocks/image

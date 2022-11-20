@@ -1,0 +1,69 @@
+Title: Bag Mini Lou
+
+----
+
+Name: Bag Mini Lou
+
+----
+
+Available: true
+
+----
+
+Item-reloved: false
+
+----
+
+Price: 360
+
+----
+
+Identifier: B_03a_2022
+
+----
+
+Sizes: one-size
+
+----
+
+Category: Accessoires
+
+----
+
+Description:
+
+Bag Mini Lou
+
+Fabric
+– 100% deadstock silk
+– Prints redesigned by DANZ and silkscreenprinted in Mitlödi, Switzerland
+– lining 100% black deadstock cotton
+
+The handle is produced in Italy
+The bag is 100% designed and sewn in Switzerland
+
+----
+
+Custom-fields:
+
+- 
+  title: Delivery
+  cf_content: >
+    delivery time 3-5 weeks the clothes are
+    only produced after the order has been
+    placed in order to use the resources
+    consciously and to avoid overproduction
+
+----
+
+Customfield: 
+
+----
+
+Primaryimage:
+
+- dsc_6870-kopie.jpg
+
+----
+
+Secondaryimage: 

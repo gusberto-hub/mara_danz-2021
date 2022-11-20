@@ -1,0 +1,5 @@
+Title: Media
+
+----
+
+Layout: [{"attrs":[],"columns":[{"blocks":[{"content":{"level":"h2","text":"Vogue Portugal"},"id":"7947a28b-89a3-4b64-abf3-b5172700b6f1","isHidden":false,"type":"heading"},{"content":{"text":"<p>In close Collaboration with <a href=\"https:\/\/www.maisonmargiela.com\/de\" rel=\"noopener noreferrer nofollow\">Vouge Portugal<\/a>, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<\/p>"},"id":"bbc6cdc7-1202-489d-91e4-43c2dcff2b1b","isHidden":false,"type":"text"},{"content":{"images":["vogue-portugal-214-hope-5september-2020-kopie.jpg","vogue-portugal-214-hope-september-2020-kopie.jpg"]},"id":"30d9b956-d375-48af-bace-bf687119bb71","isHidden":false,"type":"gallery"}],"id":"912415df-d7b9-48d7-a97c-8a1cde34344f","width":"1\/1"}],"id":"1ca1cb94-05c2-440b-8cbb-d913e22a04dc"}]

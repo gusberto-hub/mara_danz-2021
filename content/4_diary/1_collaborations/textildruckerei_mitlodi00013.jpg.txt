@@ -1,0 +1,13 @@
+Alt: 
+
+----
+
+Fullscreen: true
+
+----
+
+Template: blocks/image
+
+----
+
+Sort: 8

@@ -1,0 +1,29 @@
+Title: DANZ Skirt pink
+
+----
+
+Name: DANZ Skirt pink
+
+----
+
+Available: true
+
+----
+
+Price: 30
+
+----
+
+Identifier: 2
+
+----
+
+Sizes: one-size
+
+----
+
+Category: Outerwear
+
+----
+
+Description: This is the coolest item you've ever seen

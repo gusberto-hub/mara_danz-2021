@@ -1,0 +1,5 @@
+Fullscreen: false
+
+----
+
+Sort: 4

@@ -1,0 +1,67 @@
+Title: DANZ Earring Christina Zermatt
+
+----
+
+Name: Earring Hazel orange
+
+----
+
+Available: false
+
+----
+
+Item-reloved: false
+
+----
+
+Price: 119
+
+----
+
+Identifier: Ear_02a_2022
+
+----
+
+Sizes: one pair
+
+----
+
+Category: Accessoires
+
+----
+
+Description:
+
+DANZ Earring Hazel
+one pair of orangeEarrings 
+
+Material
+- 100% glass
+- silver plug with white glass bowl
+
+Made in Switzerland
+Each piece is individually made to create unique treasures
+
+----
+
+Custom-fields:
+
+- 
+  title: delivery
+  cf_content: delivery time 10 days
+
+----
+
+Primaryimage:
+
+- dsc_6321.jpg
+
+----
+
+Secondaryimage:
+
+- dsc_6325.jpg
+
+----
+
+Customfield: 

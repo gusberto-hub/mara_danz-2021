@@ -1,0 +1,79 @@
+Title: DANZ Dress Lea Pula
+
+----
+
+Name: Dress Lea Pula
+
+----
+
+Available: true
+
+----
+
+Item-reloved: false
+
+----
+
+Price: 1320
+
+----
+
+Identifier: D_02a_2022
+
+----
+
+Sizes: one-size
+
+----
+
+Category: Dresses
+
+----
+
+Description:
+
+DANZ Dress Lea Pula
+
+Fabric: 
+- deadstock 100% Silk
+- Prints redesigned by DANZ and silkscreenprinted in Mitlödi, Switzerland
+
+Details:
+- 2 Pockets
+- adjustable gathering in the centre front
+
+The dress is 100% designed and produced in Switzerland
+
+----
+
+Custom-fields:
+
+- 
+  title: delivery
+  cf_content: >
+    delivery time 3-5 weeks the clothes are
+    only produced after the order has been
+    placed in order to use the resources
+    consciously and to avoid overproduction
+- 
+  title: Model
+  cf_content: "Model Lea is 178 tall. She is the dress 'Lea Pula' in size S and the Bag 'Mini Zarina'."
+
+----
+
+Primaryimage:
+
+- dress_lea_pula00001.jpg
+
+----
+
+Secondaryimage:
+
+- dress_lea_pula00002.jpg
+
+----
+
+Customfield:
+
+delivery time 3-5 weeks
+the clothes are only produced after the order has been placed in order to use the resources consciously and to avoid overproduction
