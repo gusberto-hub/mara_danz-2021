@@ -2,266 +2,287 @@
 
 namespace Kirby\Form\Field;
 
+use Kirby\Cms\App;
 use Kirby\Cms\Block;
 use Kirby\Cms\Blocks as BlocksCollection;
 use Kirby\Cms\Fieldsets;
-use Kirby\Cms\Form;
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Exception\NotFoundException;
 use Kirby\Form\FieldClass;
+use Kirby\Form\Form;
 use Kirby\Form\Mixin\EmptyState;
 use Kirby\Form\Mixin\Max;
 use Kirby\Form\Mixin\Min;
+use Kirby\Toolkit\Str;
 use Throwable;
 
 class BlocksField extends FieldClass
 {
-    use EmptyState;
-    use Max;
-    use Min;
+	use EmptyState;
+	use Max;
+	use Min;
 
-    protected $blocks;
-    protected $fieldsets;
-    protected $group;
-    protected $pretty;
-    protected $value = [];
+	protected $blocks;
+	protected $fieldsets;
+	protected $group;
+	protected $pretty;
+	protected $value = [];
 
-    public function __construct(array $params = [])
-    {
-        $this->setFieldsets($params['fieldsets'] ?? null, $params['model'] ?? site());
+	public function __construct(array $params = [])
+	{
+		$this->setFieldsets($params['fieldsets'] ?? null, $params['model'] ?? App::instance()->site());
 
-        parent::__construct($params);
+		parent::__construct($params);
 
-        $this->setEmpty($params['empty'] ?? null);
-        $this->setGroup($params['group'] ?? 'blocks');
-        $this->setMax($params['max'] ?? null);
-        $this->setMin($params['min'] ?? null);
-        $this->setPretty($params['pretty'] ?? false);
-    }
+		$this->setEmpty($params['empty'] ?? null);
+		$this->setGroup($params['group'] ?? 'blocks');
+		$this->setMax($params['max'] ?? null);
+		$this->setMin($params['min'] ?? null);
+		$this->setPretty($params['pretty'] ?? false);
+	}
 
-    public function blocksToValues($blocks, $to = 'values'): array
-    {
-        $result = [];
-        $fields = [];
+	public function blocksToValues($blocks, $to = 'values'): array
+	{
+		$result = [];
+		$fields = [];
 
-        foreach ($blocks as $block) {
-            try {
-                $type = $block['type'];
+		foreach ($blocks as $block) {
+			try {
+				$type = $block['type'];
 
-                // get and cache fields at the same time
-                $fields[$type] = $fields[$type] ?? $this->fields($block['type']);
+				// get and cache fields at the same time
+				$fields[$type] ??= $this->fields($block['type']);
 
-                // overwrite the block content with form values
-                $block['content'] = $this->form($fields[$type], $block['content'])->$to();
+				// overwrite the block content with form values
+				$block['content'] = $this->form($fields[$type], $block['content'])->$to();
 
-                $result[] = $block;
-            } catch (Throwable $e) {
-                $result[] = $block;
+				$result[] = $block;
+			} catch (Throwable) {
+				$result[] = $block;
 
-                // skip invalid blocks
-                continue;
-            }
-        }
+				// skip invalid blocks
+				continue;
+			}
+		}
 
-        return $result;
-    }
+		return $result;
+	}
 
-    public function fields(string $type)
-    {
-        return $this->fieldset($type)->fields();
-    }
+	public function fields(string $type)
+	{
+		return $this->fieldset($type)->fields();
+	}
 
-    public function fieldset(string $type)
-    {
-        if ($fieldset = $this->fieldsets->find($type)) {
-            return $fieldset;
-        }
+	public function fieldset(string $type)
+	{
+		if ($fieldset = $this->fieldsets->find($type)) {
+			return $fieldset;
+		}
 
-        throw new NotFoundException('The fieldset ' . $type . ' could not be found');
-    }
+		throw new NotFoundException('The fieldset ' . $type . ' could not be found');
+	}
 
-    public function fieldsets()
-    {
-        return $this->fieldsets;
-    }
+	public function fieldsets()
+	{
+		return $this->fieldsets;
+	}
 
-    public function fieldsetGroups(): ?array
-    {
-        $fieldsetGroups = $this->fieldsets()->groups();
-        return empty($fieldsetGroups) === true ? null : $fieldsetGroups;
-    }
+	public function fieldsetGroups(): array|null
+	{
+		$fieldsetGroups = $this->fieldsets()->groups();
+		return empty($fieldsetGroups) === true ? null : $fieldsetGroups;
+	}
 
-    public function fill($value = null)
-    {
-        $value  = BlocksCollection::parse($value);
-        $blocks = BlocksCollection::factory($value);
-        $this->value = $this->blocksToValues($blocks->toArray());
-    }
+	public function fill($value = null)
+	{
+		$value  = BlocksCollection::parse($value);
+		$blocks = BlocksCollection::factory($value);
+		$this->value = $this->blocksToValues($blocks->toArray());
+	}
 
-    public function form(array $fields, array $input = [])
-    {
-        return new Form([
-            'fields' => $fields,
-            'model'  => $this->model,
-            'strict' => true,
-            'values' => $input,
-        ]);
-    }
+	public function form(array $fields, array $input = [])
+	{
+		return new Form([
+			'fields' => $fields,
+			'model'  => $this->model,
+			'strict' => true,
+			'values' => $input,
+		]);
+	}
 
-    public function isEmpty(): bool
-    {
-        return count($this->value()) === 0;
-    }
+	public function isEmpty(): bool
+	{
+		return count($this->value()) === 0;
+	}
 
-    public function group(): string
-    {
-        return $this->group;
-    }
+	public function group(): string
+	{
+		return $this->group;
+	}
 
-    public function pretty(): bool
-    {
-        return $this->pretty;
-    }
+	public function pretty(): bool
+	{
+		return $this->pretty;
+	}
 
-    public function props(): array
-    {
-        return [
-            'empty'          => $this->empty(),
-            'fieldsets'      => $this->fieldsets()->toArray(),
-            'fieldsetGroups' => $this->fieldsetGroups(),
-            'group'          => $this->group(),
-            'max'            => $this->max(),
-            'min'            => $this->min(),
-        ] + parent::props();
-    }
+	public function props(): array
+	{
+		return [
+			'empty'          => $this->empty(),
+			'fieldsets'      => $this->fieldsets()->toArray(),
+			'fieldsetGroups' => $this->fieldsetGroups(),
+			'group'          => $this->group(),
+			'max'            => $this->max(),
+			'min'            => $this->min(),
+		] + parent::props();
+	}
 
-    public function routes(): array
-    {
-        $field = $this;
+	public function routes(): array
+	{
+		$field = $this;
 
-        return [
-            [
-                'pattern' => 'uuid',
-                'action'  => function () {
-                    return ['uuid' => uuid()];
-                }
-            ],
-            [
-                'pattern' => 'fieldsets/(:any)',
-                'method'  => 'GET',
-                'action'  => function ($fieldsetType) use ($field) {
-                    $fields   = $field->fields($fieldsetType);
-                    $defaults = $field->form($fields, [])->data(true);
-                    $content  = $field->form($fields, $defaults)->values();
+		return [
+			[
+				'pattern' => 'uuid',
+				'action'  => fn () => ['uuid' => Str::uuid()]
+			],
+			[
+				'pattern' => 'paste',
+				'method'  => 'POST',
+				'action'  => function () use ($field) {
+					$request = App::instance()->request();
 
-                    return Block::factory([
-                        'content' => $content,
-                        'type'    => $fieldsetType
-                    ])->toArray();
-                }
-            ],
-            [
-                'pattern' => 'fieldsets/(:any)/fields/(:any)/(:all?)',
-                'method'  => 'ALL',
-                'action'  => function (string $fieldsetType, string $fieldName, string $path = null) use ($field) {
-                    $fields = $field->fields($fieldsetType);
-                    $field  = $field->form($fields)->field($fieldName);
+					$value  = BlocksCollection::parse($request->get('html'));
+					$blocks = BlocksCollection::factory($value);
+					return $field->blocksToValues($blocks->toArray());
+				}
+			],
+			[
+				'pattern' => 'fieldsets/(:any)',
+				'method'  => 'GET',
+				'action'  => function ($fieldsetType) use ($field) {
+					$fields   = $field->fields($fieldsetType);
+					$defaults = $field->form($fields, [])->data(true);
+					$content  = $field->form($fields, $defaults)->values();
 
-                    $fieldApi = $this->clone([
-                        'routes' => $field->api(),
-                        'data'   => array_merge($this->data(), ['field' => $field])
-                    ]);
+					return Block::factory([
+						'content' => $content,
+						'type'    => $fieldsetType
+					])->toArray();
+				}
+			],
+			[
+				'pattern' => 'fieldsets/(:any)/fields/(:any)/(:all?)',
+				'method'  => 'ALL',
+				'action'  => function (string $fieldsetType, string $fieldName, string $path = null) use ($field) {
+					$fields = $field->fields($fieldsetType);
+					$field  = $field->form($fields)->field($fieldName);
 
-                    return $fieldApi->call($path, $this->requestMethod(), $this->requestData());
-                }
-            ],
-        ];
-    }
+					$fieldApi = $this->clone([
+						'routes' => $field->api(),
+						'data'   => array_merge($this->data(), ['field' => $field])
+					]);
 
-    public function store($value)
-    {
-        $blocks = $this->blocksToValues((array)$value, 'content');
-        return $this->valueToJson($blocks, $this->pretty());
-    }
+					return $fieldApi->call($path, $this->requestMethod(), $this->requestData());
+				}
+			],
+		];
+	}
 
-    protected function setFieldsets($fieldsets, $model)
-    {
-        if (is_string($fieldsets) === true) {
-            $fieldsets = [];
-        }
+	public function store($value)
+	{
+		$blocks = $this->blocksToValues((array)$value, 'content');
 
-        $this->fieldsets = Fieldsets::factory($fieldsets, [
-            'parent' => $model
-        ]);
-    }
+		// returns empty string to avoid storing empty array as string `[]`
+		// and to consistency work with `$field->isEmpty()`
+		if (empty($blocks) === true) {
+			return '';
+		}
 
-    protected function setGroup(string $group = null)
-    {
-        $this->group = $group;
-    }
+		return $this->valueToJson($blocks, $this->pretty());
+	}
 
-    protected function setPretty(bool $pretty = false)
-    {
-        $this->pretty = $pretty;
-    }
+	protected function setFieldsets($fieldsets, $model)
+	{
+		if (is_string($fieldsets) === true) {
+			$fieldsets = [];
+		}
 
-    public function validations(): array
-    {
-        return [
-            'blocks' => function ($value) {
-                if ($this->min && count($value) < $this->min) {
-                    throw new InvalidArgumentException([
-                        'key'  => 'blocks.min.' . ($this->min === 1 ? 'singular' : 'plural'),
-                        'data' => [
-                            'min' => $this->min
-                        ]
-                    ]);
-                }
+		$this->fieldsets = Fieldsets::factory($fieldsets, [
+			'parent' => $model
+		]);
+	}
 
-                if ($this->max && count($value) > $this->max) {
-                    throw new InvalidArgumentException([
-                        'key'  => 'blocks.max.' . ($this->max === 1 ? 'singular' : 'plural'),
-                        'data' => [
-                            'max' => $this->max
-                        ]
-                    ]);
-                }
+	protected function setGroup(string $group = null)
+	{
+		$this->group = $group;
+	}
 
-                $fields = [];
-                $index  = 0;
+	protected function setPretty(bool $pretty = false)
+	{
+		$this->pretty = $pretty;
+	}
 
-                foreach ($value as $block) {
-                    $index++;
-                    $blockType = $block['type'];
+	public function validations(): array
+	{
+		return [
+			'blocks' => function ($value) {
+				if ($this->min && count($value) < $this->min) {
+					throw new InvalidArgumentException([
+						'key'  => 'blocks.min.' . ($this->min === 1 ? 'singular' : 'plural'),
+						'data' => [
+							'min' => $this->min
+						]
+					]);
+				}
 
-                    try {
-                        $blockFields = $fields[$blockType] ?? $this->fields($blockType) ?? [];
-                    } catch (Throwable $e) {
-                        // skip invalid blocks
-                        continue;
-                    }
+				if ($this->max && count($value) > $this->max) {
+					throw new InvalidArgumentException([
+						'key'  => 'blocks.max.' . ($this->max === 1 ? 'singular' : 'plural'),
+						'data' => [
+							'max' => $this->max
+						]
+					]);
+				}
 
-                    // store the fields for the next round
-                    $fields[$blockType] = $blockFields;
+				$fields = [];
+				$index  = 0;
 
-                    // overwrite the content with the serialized form
-                    foreach ($this->form($blockFields, $block['content'])->fields() as $field) {
-                        $errors = $field->errors();
+				foreach ($value as $block) {
+					$index++;
+					$blockType = $block['type'];
 
-                        // rough first validation
-                        if (empty($errors) === false) {
-                            throw new InvalidArgumentException([
-                                'key' => 'blocks.validation',
-                                'data' => [
-                                    'index' => $index,
-                                ]
-                            ]);
-                        }
-                    }
-                }
+					try {
+						$fieldset    = $this->fieldset($blockType);
+						$blockFields = $fields[$blockType] ?? $fieldset->fields() ?? [];
+					} catch (Throwable) {
+						// skip invalid blocks
+						continue;
+					}
 
-                return true;
-            }
-        ];
-    }
+					// store the fields for the next round
+					$fields[$blockType] = $blockFields;
+
+					// overwrite the content with the serialized form
+					foreach ($this->form($blockFields, $block['content'])->fields() as $field) {
+						$errors = $field->errors();
+
+						// rough first validation
+						if (empty($errors) === false) {
+							throw new InvalidArgumentException([
+								'key' => 'blocks.validation',
+								'data' => [
+									'field'    => $field->label(),
+									'fieldset' => $fieldset->name(),
+									'index'    => $index
+								]
+							]);
+						}
+					}
+				}
+
+				return true;
+			}
+		];
+	}
 }
