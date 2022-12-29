@@ -11,7 +11,7 @@ const rename = require("gulp-rename");
 const purgecss = require("gulp-purgecss");
 const terser = require("gulp-terser");
 const connect = require("gulp-connect-php");
-const projectPath = "mara_danz_01.test"; // 👈 make sure to replace 'projectName' with the name of your project folder
+const projectPath = "mara_danz-2021.test"; // 👈 make sure to replace 'projectName' with the name of your project folder
 
 // js file paths
 const utilJsPath = "main/assets/js";

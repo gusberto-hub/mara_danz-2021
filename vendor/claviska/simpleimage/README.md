@@ -304,7 +304,7 @@ Place an image on top of the current image.
 - `$opacity` (float) - The opacity level of the overlay 0-1 (default 1).
 - `$xOffset` (int) - Horizontal offset in pixels (default 0).
 - `$yOffset` (int) - Vertical offset in pixels (default 0).
-- `$calcuateOffsetFromEdge` (bool) - Calculate Offset referring to the edges of the image. $xOffset and $yOffset have no effect in center anchor. (default false). 
+- `$calculateOffsetFromEdge` (bool) - Calculate Offset referring to the edges of the image. $xOffset and $yOffset have no effect in center anchor. (default false).
 
 Returns a SimpleImage object.
 
@@ -352,7 +352,7 @@ Adds text to the image.
       - `x`* (int) - Horizontal offset in pixels.
       - `y`* (int) - Vertical offset in pixels.
       - `color`* (string|array) - The text shadow color.
-  - `calcuateOffsetFromEdge` (bool) - Calculate Offset referring to the edges of the image (default false).
+  - `calculateOffsetFromEdge` (bool) - Calculate Offset referring to the edges of the image (default false).
   - `baselineAlign` (bool) - Align the text font with the baseline. (default true).
 - `$boundary` (array) - If passed, this variable will contain an array with coordinates that
   surround the text: [x1, y1, x2, y2, width, height]. This can be used for calculating the
@@ -702,12 +702,40 @@ As a best practice, always use the defined constants instead of their integers v
 - `ERR_UNSUPPORTED_FORMAT` - The image format specified is not valid.
 - `ERR_WEBP_NOT_ENABLED` - WEBP support is not enabled in your version of PHP.
 - `ERR_WRITE` - Unable to write to the file system.
+- `ERR_INVALID_FAG` - The specified flag key does not exist.
 
 ### Useful Things To Know
 
 - Color arguments can be a CSS color name (e.g. `LightBlue`), a hex color string (e.g. `#0099dd`), or an RGB(A) array (e.g. `['red' => 255, 'green' => 0, 'blue' => 0, 'alpha' => 1]`).
 
 - When `$thickness` > 1, GD draws lines of the desired thickness from the center origin. For example, a rectangle drawn at [10, 10, 20, 20] with a thickness of 3 will actually be draw at [9, 9, 21, 21]. This is true for all shapes and is not a bug in the SimpleImage library.
+
+### Instance flags
+
+Tweak the behavior of a SimpleImage instance by setting instance flag values with the `setFlag($key, $value)` method.
+
+```php
+$image = new \claviska\SimpleImage('image.jpeg')->setFlag("foo", "bar");
+```
+
+You can also pass an associative array to the SimpleImage constructor to set instance flags.
+
+```php
+$image = new \claviska\SimpleImage('image.jpeg', ['foo' => 'bar']);
+// .. or without an $image
+$image = new \claviska\SimpleImage(flags: ['foo' => 'bar']);
+```
+
+*Note: `setFlag()` throws an `ERR_INVALID_FLAG` exception if the key does not exist (no default value).*
+
+#### `sslVerify`
+
+Setting `sslVerify` to `false` (defaults to `true`) will make all images loaded over HTTPS forgo certificate peer validation. This is especially usefull for self-signed certificates.
+
+```php
+$image = new \claviska\SimpleImage('https://localhost/image.jpeg', ['sslVerify' => false]);
+// Would normally throw an OpenSSL exception, but is ignored with the sslVerify flag set to false.
+```
 
 ## Differences from SimpleImage 2.x
 
