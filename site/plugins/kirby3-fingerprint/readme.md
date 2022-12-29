@@ -3,23 +3,30 @@
 ![Release](https://flat.badgen.net/packagist/v/bnomei/kirby3-fingerprint?color=ae81ff)
 ![Downloads](https://flat.badgen.net/packagist/dt/bnomei/kirby3-fingerprint?color=272822)
 [![Build Status](https://flat.badgen.net/travis/bnomei/kirby3-fingerprint)](https://travis-ci.com/bnomei/kirby3-fingerprint)
-[![Coverage Status](https://flat.badgen.net/coveralls/c/github/bnomei/kirby3-fingerprint)](https://coveralls.io/github/bnomei/kirby3-fingerprint) 
-[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby3-fingerprint)](https://codeclimate.com/github/bnomei/kirby3-fingerprint) 
+[![Coverage Status](https://flat.badgen.net/coveralls/c/github/bnomei/kirby3-fingerprint)](https://coveralls.io/github/bnomei/kirby3-fingerprint)
+[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/bnomei/kirby3-fingerprint)](https://codeclimate.com/github/bnomei/kirby3-fingerprint)
 [![Twitter](https://flat.badgen.net/badge/twitter/bnomei?color=66d9ef)](https://twitter.com/bnomei)
 
 
-File Method and css/js helper to add cachbusting hash and optional [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) to files.
+File Method and css/js helper to add cachebusting hash and optional [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) to files.
 
-## Commerical Usage
+## Commercial Usage
 
-This plugin is free but if you use it in a commercial project please consider to 
-- [make a donation 🍻](https://www.paypal.me/bnomei/4) or
-- [buy me ☕](https://buymeacoff.ee/bnomei) or
-- [buy a Kirby license using this affiliate link](https://a.paddle.com/v2/click/1129/35731?link=1170)
+> <br>
+> <b>Support open source!</b><br><br>
+> This plugin is free but if you use it in a commercial project please consider to sponsor me or make a donation.<br>
+> If my work helped you to make some cash it seems fair to me that I might get a little reward as well, right?<br><br>
+> Be kind. Share a little. Thanks.<br><br>
+> &dash; Bruno<br>
+> &nbsp;
+
+| M | O | N | E | Y |
+|---|----|---|---|---|
+| [Github sponsor](https://github.com/sponsors/bnomei) | [Patreon](https://patreon.com/bnomei) | [Buy Me a Coffee](https://buymeacoff.ee/bnomei) | [Paypal dontation](https://www.paypal.me/bnomei/15) | [Hire me](mailto:b@bnomei.com?subject=Kirby) |
 
 ## Similar Plugins
 
-Both of the following plugins can do cachebusting but they do not cache the modified timestamp nor can they do SRI nor do cachebusting for non js/css files.
+The following plugins can do cachebusting but they do not cache the modified timestamp nor can they do SRI nor do cachebusting for non js/css files.
 
 - [bvdputte/kirby-fingerprint](https://github.com/bvdputte/kirby-fingerprint)
 - [schnti/kirby3-cachebuster](https://github.com/schnti/kirby3-cachebuster)
@@ -53,11 +60,11 @@ echo $page->file('ukulele.pdf')->integrity();
 
 // generate sri from local file
 echo Bnomei\Fingerprint::js(
-    '/assets/js/index.min.js', 
+    '/assets/js/index.min.js',
     [
         "integrity" => true
     ]
-); 
+);
 /*
 <script src="https://../assets/js/index.min.js"
     integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
@@ -65,7 +72,7 @@ echo Bnomei\Fingerprint::js(
 */
 
 echo Bnomei\Fingerprint::js(
-    'https://external.cdn/framework.min.js', 
+    'https://external.cdn/framework.min.js',
     [
         "integrity" => "sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
     ]
@@ -79,12 +86,13 @@ echo Bnomei\Fingerprint::js(
 
 ## Settings
 
-| bnomei.fingerprint.       | Default        | Description               |            
-|---------------------------|----------------|---------------------------|
-| hash | `callback` | will lead to the hashing logic |
-| integrity | `callback` | use it to set option `'integrity' => null,` |
-| https | `true` |  boolean value or callback to force *https* scheme. |
-| query | `true`|`string` | `myfile.js?v={HASH}`, `myfile.{HASH}.js` or loaded from manifest file |
+| bnomei.fingerprint.       | Default        | Description                                                                         |
+|---------------------------|----------------|-------------------------------------------------------------------------------------|
+| hash | `callback` | will lead to the hashing logic                                                      |
+| integrity | `callback` | use it to set option `'integrity' => null,`                                         |
+| digest | `'sha384'` | Cryptographic digest to be used for SRI hashes either `'sha256'`, `'sha384'` or `'sha512'`. |
+| https | `true` | boolean value or callback to force *https* scheme on all but localhost enviroments. |
+| query | `true` or `string` or `callback` | `myfile.js?v={HASH}`, `myfile.{HASH}.js` or loaded from manifest file               |
 
 
 ### Query option: true (default)
@@ -99,7 +107,7 @@ This is the default since it works without additional changes to your server but
 
 If you disable the query option you also also need to add apache or nginx rules. These rules will redirect css and js files from with hash to the asset on disk.
 
-**.htaccess** – put this directly after the `RewriteBase` statment
+**.htaccess** - put this directly after the `RewriteBase` statment
 ```apacheconfig
 # RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f

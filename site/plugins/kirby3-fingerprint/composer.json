@@ -1,8 +1,8 @@
 {
   "name": "bnomei/kirby3-fingerprint",
   "type": "kirby-plugin",
-  "version": "3.0.12",
-  "description": "File Method and css/js helper to add cachebusting hash and optional Subresource Integrity to file",
+  "version": "3.2.0",
+  "description": "File Method and css/js helper to add cache-busting hash and optional Subresource Integrity to file",
   "license": "MIT",
   "authors": [
     {
@@ -30,35 +30,43 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
   },
   "require": {
-    "php": ">=7.2.0",
-    "getkirby/composer-installer": "^1.1"
+    "php": ">=7.4.0",
+    "getkirby/composer-installer": "^1.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.3",
-    "getkirby/cms": "^3.2",
-    "php-coveralls/php-coveralls": "^2.1"
+    "getkirby/cms": "^3.5",
+    "php-coveralls/php-coveralls": "^2.1",
+    "phpunit/phpunit": "^9.5"
   },
   "scripts": {
     "analyze": "phpstan analyse classes",
-    "insights": "./vendor/bin/phpinsights -v",
     "fix": "php-cs-fixer fix",
     "test": [
       "mkdir -p tests/logs",
+      "@putenv XDEBUG_MODE=coverage",
       "phpunit --configuration ./phpunit.xml"
     ],
     "dist": [
       "composer install --no-dev --optimize-autoloader",
       "git rm -rf --cached .; git add .;"
+    ],
+    "kirby": [
+      "composer install",
+      "composer update",
+      "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
+      "composer update --working-dir=tests/kirby"
     ]
   },
   "extra": {
     "kirby-cms-path": "tests/kirby"
   },
   "suggest": {
-    "bnomei/kirby3-autoid": "Get modification timestamp for kirby files (not css/js) at almost zero-cpu-cost",
     "bnomei/kirby3-security-headers": "Let's make the web a saver place – sensible defaults included.",
     "diverently/laravel-mix-kirby": "Consider using this plugin instead if all your assets are versioned by laravel mix."
   }
