@@ -31,7 +31,7 @@
                         M: <a href="mailto:<?= $site->mail() ?>"><?= $site->mail() ?></a>
                     </li>
                     <li>
-                        IG: <a href="<?= $site->instagram() ?>"><?= $site->instagram_handle() ?></a>
+                        IG: <a href="<?= $site->instagram() ?>" target="_blank"><?= $site->instagram_handle() ?></a>
                     </li>
                 </ul>
             </div>
