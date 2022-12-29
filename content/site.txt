@@ -6,21 +6,19 @@ Button-text: New items available at the end of December -> SHOP
 
 ----
 
-Futured:
-
-- shop
+Futured: - page://5sRigxCJjYuCRLar
 
 ----
 
-Background:
-
-- 20.jpg
+Background: - file://eMjqmM7sxm2zFAKX
 
 ----
 
-Background-mobile:
+Background-mobile: - file://gY62BtDnjYDuGILg
 
-- you-have-a-beautiful-voice_hoch.jpg
+----
+
+Customfield-title: 
 
 ----
 
@@ -46,6 +44,10 @@ Phone: +41 79 411 00 41
 ----
 
 Instagram: https://instagram.com/mara_danz
+
+----
+
+Instagram-handle: @mara_danz
 
 ----
 

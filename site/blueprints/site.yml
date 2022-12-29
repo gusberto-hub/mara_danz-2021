@@ -90,6 +90,11 @@ tabs:
       instagram:
         label: Instagram
         type: url
+        width: 1/2
+      instagram_handle:
+        label: Instagram handle
+        type: text
+        width: 1/2
       newsletter:
         label: Newsletter
         type: url

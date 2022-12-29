@@ -26,8 +26,14 @@
         <div>
             <div>
                 <h3>Contact</h3>
-                <p>M: <a href="mailto:<?= $site->mail() ?>"><?= $site->mail() ?></a> <br>
-                    IG: <a href="mailto:<?= $site->instagram() ?>">@Mara_Danz</a>
+                <ul>
+                    <li>
+                        M: <a href="mailto:<?= $site->mail() ?>"><?= $site->mail() ?></a>
+                    </li>
+                    <li>
+                        IG: <a href="<?= $site->instagram() ?>"><?= $site->instagram_handle() ?></a>
+                    </li>
+                </ul>
             </div>
             <div>
                 <h3>Newsletter</h3>

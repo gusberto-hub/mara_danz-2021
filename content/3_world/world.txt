@@ -13,15 +13,11 @@ By collaborating with artists from interdisciplinary directions, she experiences
 
 ----
 
-Picture-static-1:
-
-- Scan 5.jpeg
+Picture-static-1: - Scan 5.jpeg
 
 ----
 
-Picture-flow-1:
-
-- danz_symbol.png
+Picture-flow-1: - danz_symbol.png
 
 ----
 
@@ -33,15 +29,11 @@ Paragraph2: With the DANZ RELOVED brand, we are pursuing another goal of our sus
 
 ----
 
-Picture-static-2:
-
-- img_1740.jpg
+Picture-static-2: - img_1740.jpg
 
 ----
 
-Picture-flow-2:
-
-- reloved_symbol.png
+Picture-flow-2: - reloved_symbol.png
 
 ----
 
@@ -67,3 +59,7 @@ Instagram: https://instagram.com/mara_danz
 ----
 
 Newsletter: https://comm.us6.list-manage.com/subscribe/post?u=a0eac11fe344c8178258d55ae&amp;id=2937726059
+
+----
+
+Uuid: nmKnBRipByfgstBL
