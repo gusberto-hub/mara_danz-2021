@@ -1478,6 +1478,12 @@ header {
 
   .product {
     position: relative;
+
+    &:hover {
+      .product-not-available {
+        background: #ff300040;
+      }
+    }
   }
 
   .product-image {
@@ -1526,21 +1532,21 @@ header {
 
   .product-not-available {
     @extend .body-font;
-    mix-blend-mode: normal;
-    color: var(--color-primary);
+    font-size: calc(var(--font-body) * 0.8);
+    /* mix-blend-mode: normal; */
+    /* color: var(--color-primary); */
     position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    text-align: center;
-    background: var(--color-accent);
-    padding: 0.1em 0;
+    bottom: 2.8rem;
+    right: 0.5rem;
+    /* text-align: center; */
+    background: #ffffff40;
+    backdrop-filter: blur(4px);
+    border: 1px solid black;
+    padding: 0em 0.6em;
+    border-radius: 2rem;
 
     @include breakpoint(sm) {
-      bottom: 0;
-      right: 0;
-      left: 20%;
-      top: unset;
+      bottom: 0.5rem;
     }
   }
 
