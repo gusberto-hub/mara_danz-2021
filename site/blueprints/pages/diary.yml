@@ -1,8 +1,0 @@
-title: Campaign
-sections:
-  pages:
-    layout: cards
-    size: small
-    image:
-      cover: true
-      ratio: 2/3

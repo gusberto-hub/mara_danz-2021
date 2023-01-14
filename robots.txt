@@ -1,8 +1,0 @@
-User-agent: *
-disallow: /kirby/
-disallow: /site/
-allow: /media/
-
-Sitemap: http://www.maradanz.com/sitemap.xml
-Sitemap: https://www.maradanz.com/sitemap.xml
-

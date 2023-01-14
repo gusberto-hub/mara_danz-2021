@@ -1,5 +1,0 @@
-Title: Campaign
-
-----
-
-Layout: [{"attrs":[],"columns":[{"blocks":[{"content":{"url":"https:\/\/www.youtube.com\/watch?v=upJnrxhmVJ8","caption":"Performance &amp; Creative Direction : Yann Slattery"},"id":"d4c25c83-d0ca-4e9e-8184-0c2a976f56e0","isHidden":false,"type":"video"}],"id":"b0d8196d-c53e-4852-92e3-643b5a9fad31","width":"1\/1"}],"id":"63540a0a-e23f-4061-ba80-e53eb36329fb"},{"attrs":[],"columns":[{"blocks":[{"content":{"images":["dsc_5966-kopie.jpg"]},"id":"71991a8c-de12-47cb-95b9-a34a8825fe79","isHidden":false,"type":"gallery"}],"id":"55129aae-bcb3-42ad-9e25-dcfd7d894779","width":"1\/1"}],"id":"9c7c642b-67f9-4992-b240-4c096269432f"}]
