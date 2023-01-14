@@ -1,0 +1,74 @@
+@use "../custom-style/variables" as *;
+
+#start-screen {
+  & canvas {
+    position: absolute;
+    top: 0;
+    z-index: 0;
+  }
+
+  & .start-screen-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    transition: inset 400ms ease;
+    width: 80vw;
+    height: calc(var(--viewport-height) * 0.7);
+    pointer-events: none;
+    img {
+      object-fit: contain;
+      margin: 0 auto;
+      height: 100%;
+    }
+
+    @include breakpoint(sm) {
+      // left: 25%;
+      // top: 50%;
+    }
+  }
+
+  & .start-screen-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(var(--viewport-height) - var(--info-box-height));
+    z-index: 1;
+  }
+
+  & .start-screen-btn {
+    @extend .body-font;
+    mix-blend-mode: normal;
+    text-transform: none;
+    text-align: center;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
+
+    background: var(--bg-color);
+    padding: 0.4em $padding-page;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0.4em);
+    color: var(--color-primary);
+
+    & a {
+      margin: 0 auto;
+      position: relative;
+      color: currentColor;
+      &::after {
+        content: " ›";
+        position: absolute;
+        right: -0.5em;
+        transition: transform 200ms ease;
+      }
+    }
+
+    &:hover a::after {
+      transform: translateX(0.5em);
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@use "../custom-style/variables" as *;
+
+#diary {
+  padding-bottom: 5rem;
+  width: 100%;
+
+  article {
+    margin-bottom: 0;
+    display: block;
+    width: 100%;
+  }
+
+  article:last-of-type .collab:last-of-type {
+    .blocks {
+      margin-bottom: 0;
+
+      .gallery-block:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .blocks {
+    margin-bottom: 6rem;
+    text-align: center;
+
+    @include breakpoint(sm) {
+      margin-bottom: 12rem;
+    }
+
+    h2 {
+      @extend .heading-font;
+      mix-blend-mode: difference;
+      color: white;
+      position: sticky;
+      top: 5rem;
+      font-size: var(--font-title);
+      z-index: -1;
+      margin-bottom: var(--space-xxxs);
+      @include breakpoint(sm) {
+        top: 3rem;
+      }
+    }
+
+    p {
+      margin-bottom: var(--space-md);
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+
+      @include breakpoint(sm) {
+        max-width: 90ch;
+      }
+    }
+
+    .gallery-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $padding-page * 1;
+      margin-bottom: $padding-page;
+      z-index: 2;
+      position: relative;
+
+      @include breakpoint(sm) {
+        display: flex;
+        max-height: unset;
+        justify-content: space-evenly;
+        margin-bottom: 4vw;
+      }
+
+      picture {
+        img {
+          max-height: calc(var(--viewport-height) * 0.6);
+          margin: 0 auto;
+          object-fit: contain;
+          margin-bottom: var(--space-md);
+          // box-shadow: 0px 3px 6px #ccc;
+          transition: all 1s ease;
+
+          &:hover {
+            // transform: rotate(1deg);
+            filter: invert(1);
+          }
+
+          @include breakpoint(sm) {
+            max-height: calc(var(--viewport-height) * 0.7);
+            max-width: 42vw;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
