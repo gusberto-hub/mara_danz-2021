@@ -1,7 +1,7 @@
 <?php
 
 return [
-'debug' => false,
+'debug' => true,
 
 'routes' => [
 [
@@ -29,5 +29,3 @@ return [
 
 'sitemap.ignore' => ['error', 'home'],
 ];
-
-?>

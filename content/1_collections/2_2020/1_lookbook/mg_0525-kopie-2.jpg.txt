@@ -1,5 +1,0 @@
-Fullscreen: false
-
-----
-
-Sort: 2

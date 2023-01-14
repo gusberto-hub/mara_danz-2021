@@ -90,12 +90,14 @@ a,
   text-decoration: none;
 
   &:hover {
-    color: var(--color-accent-difference);
+    > *:not(.product-image) {
+      @extend .accent-color-difference;
+    }
   }
 }
 
 mark {
-  background-color: alpha(var(--color-accent), 0.2);
+  background-color: alpha(var(--bg-color), 0.2);
   color: inherit;
 }
 

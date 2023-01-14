@@ -5,6 +5,13 @@ tabs:
     columns:
       - width: 1/2
         sections:
+          fields:
+            fields:
+              color:
+                label: Highlight Color
+                type: color
+                editableAlpha: false # (optional) if set to false, alpha value controls are not displayed
+                default: "#EFCB69" # (optional)
           pages:
             type: pages
             layout: list
@@ -39,6 +46,17 @@ tabs:
             label: Linked Page
             type: pages
             multiple: false
+          logo_layer:
+            label: Logo Layer
+            type: files
+            layout: cards
+            size: medium
+            image:
+              background: white
+            uploads: 
+              template: files-upload
+            accept: image/png, image/jpg. image/jpeg
+            multiple: false
           background:
             label: Background
             type: files
@@ -46,6 +64,8 @@ tabs:
             size: medium
             image:
               background: white
+            uploads: 
+              template: files-upload
             multiple: false
           background_mobile:
             label: Background mobile
@@ -54,6 +74,8 @@ tabs:
             size: medium
             image:
               background: white
+            uploads: 
+              template: files-upload
             multiple: false
 
       - width: 1/1

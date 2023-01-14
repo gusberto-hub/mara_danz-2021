@@ -16,6 +16,7 @@
   @include defineColorHSL(--color-accent-difference-darker, 199, 100%, 30%);
   @include defineColorHSL(--color-accent-difference-dark, 199, 100%, 40%);
   @include defineColorHSL(--color-accent-difference, 199, 100%, 50%);
+
   @include defineColorHSL(--color-accent-difference-light, 199, 100%, 60%);
   @include defineColorHSL(--color-accent-difference-lighter, 199, 100%, 70%);
 
@@ -153,4 +154,9 @@
 }
 .border-accent-difference-lighter {
   border-color: alpha(var(--color-accent-difference-lighter), var(--bg-o, 1));
+}
+
+.accent-color-difference {
+  color: var(--bg-color);
+  filter: invert(1);
 }

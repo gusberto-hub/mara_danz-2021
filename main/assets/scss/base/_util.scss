@@ -1133,7 +1133,7 @@
     color: alpha(var(--color-accent-dark), var(--color-o, 1));
   }
   .color-accent {
-    color: alpha(var(--color-accent), var(--color-o, 1));
+    color: alpha(var(--bg-color), var(--color-o, 1));
   }
   .color-accent-light {
     color: alpha(var(--color-accent-light), var(--color-o, 1));
@@ -1857,7 +1857,7 @@
     border-color: alpha(var(--color-accent-dark), var(--border-o, 1));
   }
   .border-accent {
-    border-color: alpha(var(--color-accent), var(--border-o, 1));
+    border-color: alpha(var(--bg-color), var(--border-o, 1));
   }
   .border-accent-light {
     border-color: alpha(var(--color-accent-light), var(--border-o, 1));
@@ -2063,7 +2063,7 @@
     background-color: alpha(var(--color-accent-dark), var(--bg-o, 1));
   }
   .bg-accent {
-    background-color: alpha(var(--color-accent), var(--bg-o, 1));
+    background-color: alpha(var(--bg-color), var(--bg-o, 1));
   }
   .bg-accent-light {
     background-color: alpha(var(--color-accent-light), var(--bg-o, 1));

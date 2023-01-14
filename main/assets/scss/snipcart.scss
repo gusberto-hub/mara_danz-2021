@@ -59,7 +59,7 @@
   --color-success: hsl(144, 50%, 55%);
   --color-error: var(--color-warning);
 
-  --color-link: var(--color-accent);
+  --color-link: var(--bg-color);
   --color-link-hover: hsl(220, 70%, 65%);
   --color-link-active: var(--color-link);
   --color-link-focus: var(--color-link);
@@ -171,7 +171,7 @@
   //   --bgColor-input-autofill: hsl(210, 60%, 15%);
 
   --bgColor-buttonPrimary: var(--color-primary);
-  --bgColor-buttonPrimary-hover: var(--color-accent);
+  --bgColor-buttonPrimary-hover: var(--bg-color);
   // --bgColor-buttonPrimary-active: var(--bgColor-buttonPrimary);
   // --bgColor-buttonPrimary-focus: var(--bgColor-buttonPrimary);
   // --bgColor-buttonPrimary-disabled: hsl(210, 10%, 25%);
@@ -194,7 +194,7 @@
   //   --bgColor-buttonDanger-success: hsl(144, 66%, 30%);
   //   --bgColor-buttonDanger-error: hsl(6, 60%, 35%);
 
-  --bgColor-badge: var(--color-accent);
+  --bgColor-badge: var(--bg-color);
   --bgColor-badge-active: var(--color-accent-lighter);
   --bgColor-badge-disabled: var(--color-bg-light);
 

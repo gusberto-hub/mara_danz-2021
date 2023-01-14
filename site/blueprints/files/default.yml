@@ -1,5 +1,6 @@
-title: File
+title: Image
 preset: files
+accept: image/png, image/jpg. image/jpeg
 
 fields:
   alt:

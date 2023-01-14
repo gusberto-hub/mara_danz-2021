@@ -47,7 +47,7 @@ gulp.task("sass", function () {
         })
       )
       .pipe(rename("style-fallback.css"))
-      .pipe(postcss([cssvariables(), calc()]))
+      .pipe(postcss([]))
       .pipe(gulp.dest(cssFolder))
   );
 });

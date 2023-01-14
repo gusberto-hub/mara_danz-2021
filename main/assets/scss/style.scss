@@ -10,3 +10,12 @@ $breakpoints: (
 @import "base";
 @import "custom-style";
 @import "components/**/*.scss";
+
+@import "templates/main";
+@import "templates/shop";
+@import "templates/diary";
+@import "templates/world";
+@import "templates/collections";
+@import "templates/info-box";
+@import "templates/navigation";
+@import "templates/startscreen";

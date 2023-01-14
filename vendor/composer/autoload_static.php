@@ -12,6 +12,7 @@ class ComposerStaticInit82c80b1483a39e49e1f048933a36d2b7
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'f864ae44e8154e5ff6f4eec32f46d37f' => __DIR__ . '/../..' . '/kirby/config/setup.php',
         '87988fc7b1c1f093da22a1a3de972f3a' => __DIR__ . '/../..' . '/kirby/config/helpers.php',
+        '3481fdf198d265ea569012b903c00379' => __DIR__ . '/..' . '/timoetting/kirby-color/config.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -79,8 +80,8 @@ class ComposerStaticInit82c80b1483a39e49e1f048933a36d2b7
         ),
         'Kirby\\' => 
         array (
-            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
-            1 => __DIR__ . '/../..' . '/kirby/src',
+            0 => __DIR__ . '/../..' . '/kirby/src',
+            1 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
         ),
         'Composer\\Semver\\' => 
         array (

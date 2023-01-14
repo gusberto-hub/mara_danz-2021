@@ -15,53 +15,63 @@
     <meta name="msapplication-TileColor" content="[HEXFARBE (z.B. #000000)]">
     <meta name="facebook-domain-verification" content="xs4wurd5wqz7d32tzrlsaxwm07205s" />
     <script>
-    document.documentElement.className = "js";
-    var supportsCssVars = function() {
-        var e,
-            t = document.createElement("style");
-        return (
-            (t.innerHTML = "root: { --tmp-var: bold; }"),
-            document.head.appendChild(t),
-            (e = !!(
-                window.CSS &&
-                window.CSS.supports &&
-                window.CSS.supports("font-weight", "var(--tmp-var)")
-            )),
-            t.parentNode.removeChild(t),
-            e
-        );
-    };
-    supportsCssVars() ||
-        alert(
-            "Please view this demo in a modern browser that supports CSS Variables."
-        );
+        document.documentElement.className = "js";
+        var supportsCssVars = function() {
+            var e,
+                t = document.createElement("style");
+            return (
+                (t.innerHTML = "root: { --tmp-var: bold; }"),
+                document.head.appendChild(t),
+                (e = !!(
+                    window.CSS &&
+                    window.CSS.supports &&
+                    window.CSS.supports("font-weight", "var(--tmp-var)")
+                )),
+                t.parentNode.removeChild(t),
+                e
+            );
+        };
+        supportsCssVars() ||
+            alert(
+                "Please view this demo in a modern browser that supports CSS Variables."
+            );
     </script>
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '639324087794593'); 
-    fbq('track', 'PageView');
+        ! function(f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '639324087794593');
+        fbq('track', 'PageView');
     </script>
     <noscript>
-        <img height="1" width="1" src="https://www.facebook.com/tr?id=639324087794593&ev=PageView&noscript=1"/>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=639324087794593&ev=PageView&noscript=1" />
     </noscript>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    <?= Bnomei\Fingerprint::css('assets/css/style.css');?>
-    <title><?= $site->title()?>
-        <?php if ($page->parent() == 'shop'): ?>
-        | Shop – <?= $page->title() ?>
-        <?php elseif ($page != 'home'): ?>
-        | <?= $page->title() ?>
-        <?php else:  ?>
-        | Fashion Design
-        <?php  endif ?>
+    <?= Bnomei\Fingerprint::css('assets/css/style.css'); ?>
+    <title><?= $site->title() ?>
+        <?php if ($page->parent() == 'shop') : ?>
+            | Shop – <?= $page->title() ?>
+        <?php elseif ($page != 'home') : ?>
+            | <?= $page->title() ?>
+        <?php else :  ?>
+            | Fashion Design
+        <?php endif ?>
     </title>
 </head>
 
-<body>
+<body style="--bg-color:<?= $site->color() ?>">

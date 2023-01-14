@@ -3,7 +3,7 @@
         'name' => 'getkirby/plainkit',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '2db2f49f799b14935d311d5fa3a1f69fac819c85',
+        'reference' => '22b079ba4f9142982b653c15a5d9319e8a7d1c97',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -67,7 +67,7 @@
         'getkirby/plainkit' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '2db2f49f799b14935d311d5fa3a1f69fac819c85',
+            'reference' => '22b079ba4f9142982b653c15a5d9319e8a7d1c97',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -156,6 +156,15 @@
             'replaced' => array(
                 0 => '*',
             ),
+        ),
+        'timoetting/kirby-color' => array(
+            'pretty_version' => '1.0.4',
+            'version' => '1.0.4.0',
+            'reference' => '20e47c38be14779fb403a28683f923b4ca284dd8',
+            'type' => 'plugin',
+            'install_path' => __DIR__ . '/../timoetting/kirby-color',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
     ),
 );

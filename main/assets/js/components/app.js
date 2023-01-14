@@ -43,7 +43,7 @@ const lookbookCarousel = {
   lookbookImages: document.querySelectorAll(
     "#lookbook .image-container picture"
   ),
-  closeButton: document.querySelector(".close-fullscreen"),
+  closeButton: document.querySelector("#close-fullscreen"),
   isVisible: false,
 };
 
@@ -77,7 +77,7 @@ const openTerms = document.querySelector(".open-terms");
 
 if (openTerms) {
   const termsPopup = document.querySelector(".terms-conditions");
-  const closeTerms = document.querySelector(" .close-terms");
+  const closeTerms = document.querySelector(" #close-terms");
   openTerms.onclick = () => {
     termsPopup.style.visibility = "visible";
   };
