@@ -54,7 +54,11 @@
                             <?php if ($product->secondaryimage()->isNotEmpty()) : ?>
                                 <img class='second-image' width="600" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 600])->url() ?>" />
                             <?php endif ?>
-
+                            <?php if ($product->available()->isFalse()) : ?>
+                                <div class="product-not-available">
+                                    <p>sold out</p>
+                                </div>
+                            <?php endif ?>
                         </div>
 
                     <?php endif ?>
@@ -63,14 +67,6 @@
                         <h2 class="product-name"><?= $product->name()->html() ?></h2>
                         <p class="product-price">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
                     </div>
-
-                    <?php if ($product->available()->isFalse()) : ?>
-                        <div class="product-not-available">
-                            <div>
-                                sold out
-                            </div>
-                        </div>
-                    <?php endif ?>
 
                 </a>
                 <div hidden>
