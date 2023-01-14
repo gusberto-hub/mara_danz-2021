@@ -1,0 +1,109 @@
+title: Product
+
+columns:
+  - width: 1/2
+    sections:
+      info:
+        type: fields
+        fields:
+          name:
+            label: Name
+            type: text
+            required: true
+            width: 1/1
+
+          available:
+            label: Available
+            type: toggle
+            default: true
+            width: 1/4
+
+          item_reloved:
+            label: Reloved?
+            type: toggle
+            default: false
+            width: 1/4
+
+          Price:
+            label: Price
+            type: number
+            width: 1/2
+            required: true
+
+          Identifier:
+            label: Identifier
+            type: text
+            width: 1/2
+            required: true
+
+          Weight:
+            label: Weight
+            type: number
+            width: 1/2
+
+          Sizes:
+            label: Sizes
+            type: multiselect
+            min: 1
+            options: query
+            query: page.parent.sizes.split
+            width: 1/2
+
+          Category:
+            label: Category
+            type: multiselect
+            max: 1
+            options: query
+            query: page.parent.categories.split
+
+          Description:
+            label: Description
+            type: textarea
+            size: small
+
+          Custom_fields:
+            label: Custom Fields
+            type: structure
+            fields:
+              title:
+                label: Title
+                type: text
+              cf_content:
+                label: Content
+                type: textarea
+
+          # customfield:
+          #   label: Custom field
+          #   type: textarea
+          #   size: small
+          #   help: "Additional informations reguarding shipping, production, etc."
+
+          primaryimage:
+            label: Main image
+            type: files
+            layout: cards
+            size: small
+            image:
+              background: white
+            multiple: false
+            required: true
+            width: 1/2
+
+          secondaryimage:
+            label: Second image
+            type: files
+            layout: cards
+            size: small
+            image:
+              background: white
+            multiple: false
+            width: 1/2
+
+  - width: 1/2
+    sections:
+      Images:
+        type: files
+        layout: cards
+        image:
+          ratio: 4/5
+          cover: true

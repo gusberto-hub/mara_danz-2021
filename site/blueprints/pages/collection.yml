@@ -1,0 +1,48 @@
+title: Collection
+columns:
+  - width: 1/2
+    sections:
+      info:
+        type: fields
+        fields:
+          name:
+            label: Collection Name
+            type: text
+          year:
+            label: Year
+            type: text
+
+          description:
+            label: Description
+            type: textarea
+            size: small
+
+      Pages:
+        headline: Published
+        type: pages
+        layout: list
+        status: listed
+        image:
+          ratio: 4/5
+          cover: true
+      not_listed:
+        headline: Not listed
+        type: pages
+        status: unlisted
+      drafts:
+        headline: Drafts
+        type: pages
+        status: drafts
+        template:
+          - lookbook
+          - campaign
+
+  - width: 1/2
+    sections:
+      Files:
+        headline: files
+        type: files
+        layout: cards
+        image:
+          ratio: 4/5
+          cover: true

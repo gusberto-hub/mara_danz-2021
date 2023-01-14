@@ -1,0 +1,11 @@
+title: Image
+preset: files
+accept: image/png, image/jpg. image/jpeg
+
+fields:
+  alt:
+    label: Alt Text
+    type: text
+  # fullscreen:
+  #   label: Fullscreen
+  #   type: toggle
