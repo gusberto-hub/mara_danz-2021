@@ -12,10 +12,18 @@ columns:
             required: true
             width: 1/1
 
-          available:
-            label: Available
-            type: toggle
-            default: true
+          # available:
+          #   label: Available
+          #   type: toggle
+          #   default: true
+          #   width: 1/4
+
+          availability_status:
+            label: Availability status
+            type: select
+            options:
+              - coming soon
+              - sold out
             width: 1/4
 
           item_reloved:

@@ -54,9 +54,14 @@
                             <?php if ($product->secondaryimage()->isNotEmpty()) : ?>
                                 <img class='second-image' width="600" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 600])->url() ?>" />
                             <?php endif ?>
-                            <?php if ($product->available()->isFalse()) : ?>
+                            <?php if ($product->availability_status() == 'sold out') : ?>
                                 <div class="product-not-available">
                                     <p>sold out</p>
+                                </div>
+                            <?php endif ?>
+                            <?php if ($product->availability_status() == 'coming soon') : ?>
+                                <div class="product-not-available">
+                                    <p>coming soon</p>
                                 </div>
                             <?php endif ?>
                         </div>
@@ -65,7 +70,9 @@
 
                     <div class="product-info">
                         <h2 class="product-name"><?= $product->name()->html() ?></h2>
-                        <p class="product-price">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
+                        <?php if ($product->availability_status() != 'coming soon') : ?>
+                            <p class="product-price">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
+                        <?php endif ?>
                     </div>
 
                 </a>

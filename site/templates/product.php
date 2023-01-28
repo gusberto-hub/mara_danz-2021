@@ -28,10 +28,10 @@
                         <?php endif ?>
                         <h1 class="title"><?= $product->name() ?></h1>
                     </div>
-                    <?php if ($product->available()->isTrue()) : ?>
+                    <?php if ($product->availability_status()->isEmpty()) : ?>
                         <p class="price price-desktop">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
                     <?php else : ?>
-                        <h2 class="title" style="text-transform:uppercase">Sold out</h2>
+                        <h2 class="title" style="text-transform:uppercase"><?= $product->availability_status() ?></h2>
                     <?php endif ?>
 
                 </div>
