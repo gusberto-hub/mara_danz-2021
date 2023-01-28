@@ -30,8 +30,6 @@
                     </div>
                     <?php if ($product->availability_status()->isEmpty()) : ?>
                         <p class="price price-desktop">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
-                    <?php else : ?>
-                        <h2 class="title" style="text-transform:uppercase"><?= $product->availability_status() ?></h2>
                     <?php endif ?>
 
                 </div>
@@ -41,6 +39,11 @@
                         <!-- <div class="swiper-info">
                             <p>doubleklick to zoom</p>
                         </div> -->
+                        <?php if ($product->availability_status()->isNotEmpty()) : ?>
+                            <div class="product-availability">
+                                <p><?= $product->availability_status() ?></p>
+                            </div>
+                        <?php endif ?>
                         <div class="swiper-wrapper">
                             <?php foreach ($product->images()->sortBy('sort') as $image) : ?>
                                 <div class="swiper-slide">
@@ -57,8 +60,11 @@
                 </div>
                 <div class="product-description">
                     <div>
-                        <p class="price price-mobile">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?>
-                        </p>
+                        <?php if ($product->availability_status()->isEmpty()) : ?>
+                            <p class="price price-mobile">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?>
+                            </p>
+                        <?php endif ?>
+
                         <ul class="accordion  js-accordion" data-animation="on" data-multi-items="on">
 
                             <li class="accordion__item accordion__item--is-open ">
