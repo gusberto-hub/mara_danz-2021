@@ -132,7 +132,7 @@
                         </ul>
                     </div>
 
-                    <?php if ($product->available()->isTrue()) : ?>
+                    <?php if ($product->available()->isTrue() || $product->availability_status()->isEmpty()) : ?>
                         <button class="add-to-cart-btn snipcart-add-item" data-item-name="<?= $product->name() ?>" data-item-id="<?= $product->Identifier() ?>" data-item-url="<?= $product->url() ?>" data-item-image="<?= $product->image()->url() ?>" data-item-price="<?= $product->price() ?>" data-item-url="<?= $product->url() ?>" data-item-description="<?= $product->description() ?>" data-item-custom1-name="Size" data-item-custom1-options="<?= str_replace(', ', '|', $product->sizes())  ?>" data-item-shippable="<?= $product->available() ?>" data-item-custom1-required="true">
                             Add to Cart
                         </button>
