@@ -37,7 +37,10 @@
                 <?php foreach ($images as $image) : ?>
                     <div class='image-collection'>
                         <picture>
-                            <img src="<?= $image->resize(500)->url() ?>" alt="">
+                            <picture>
+                                <source srcset="<?= $image->thumb($options = ['width' => 400, 'format' => 'webp'])->url() ?>" type="image/webp">
+                                <img srcset="<?= $image->thumb($options = ['width' => 300])->url() ?>" alt="" loading="lazy">
+                            </picture>
                         </picture>
                     </div>
                 <?php endforeach ?>
@@ -48,7 +51,8 @@
             <?php foreach ($images as $image) : ?>
                 <div class='carousel-cell'>
                     <picture>
-                        <img src="<?= $image->resize(800)->url() ?>" alt="">
+                        <source srcset="<?= $image->thumb($options = ['width' => 1000, 'format' => 'webp'])->url() ?>" type="image/webp">
+                        <img src="<?= $image->thumb($options = ['width' => 1000])->url() ?>" alt="lookbook picture <?= $image->indexOf() . ' ' . $collection->name()  ?>" loading="lazy" width="300" height="500">
                     </picture>
                 </div>
                 <?= $image->count() ?>

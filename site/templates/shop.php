@@ -48,11 +48,18 @@
                     <?php if ($product->images()) :
                         $images = $product->images()->sortBy('sort') ?>
 
-                        <div class='product-image'>
-                            <img class='main-image' width="600" src="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 600])->url() ?>" />
+                        <div class='product-image-container'>
+
+                            <picture class="main-image">
+                                <source srcset="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 550, 'format' => 'webp'])->url() ?>" type="image/webp">
+                                <img loading="lazy" width="350" height="525" src="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 550])->url() ?>" alt="<?= $product->name() ?> main image" />
+                            </picture>
 
                             <?php if ($product->secondaryimage()->isNotEmpty()) : ?>
-                                <img class='second-image' width="600" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 600])->url() ?>" />
+                                <picture class="second-image">
+                                    <source srcset="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 550, 'format' => 'webp'])->url() ?>" type="image/webp">
+                                    <img loading="lazy" width="350" height="525" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 550])->url() ?>" alt="<?= $product->name() ?> secondary image" />
+                                </picture>
                             <?php endif ?>
                             <?php if ($product->availability_status() == 'sold out') : ?>
                                 <div class="product-not-available">

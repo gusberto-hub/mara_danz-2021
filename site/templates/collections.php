@@ -34,16 +34,21 @@
                     <?php foreach ($collection->images() as $image) : ?>
                         <div class='image-collection'>
                             <picture>
-                                <img src="<?= $image->url() ?>" alt="" width="<?= $image->width() ?>" height="<?= $image->height() ?>">
+                                <source srcset="<?= $image->thumb($options = ['width' => 1000, 'format' => 'webp'])->url() ?>" type="image/webp">
+                                <img src="<?= $image->thumb($options = ['width' => 800])->url() ?>" alt="<?= $collection->name() . ' ' . $image->indexOf() + 1 ?>" width="<?= $image->width() ?>" height="<?= $image->height() ?>" loading="lazy">
                             </picture>
                         </div>
                     <?php endforeach ?>
+                    ssss
                 </div>
                 <div class="swiper-collection">
                     <div class="swiper-wrapper">
                         <?php foreach ($collection->images()->sortBy('sort') as $image) : ?>
                             <div class="swiper-slide">
-                                <img class="" src="<?= $image->thumb(['height'  => 1200, 'quality' => 80, 'format' => 'webp'])->url() ?>" width="500" alt="<?= $image->alt() ?>">
+                                <picture>
+                                    <source srcset="<?= $image->thumb(['height'  => 1200, 'quality' => 80, 'format' => 'webp'])->url() ?>" width="500">
+                                    <img src="<?= $image->thumb(['height'  => 1200, 'quality' => 80])->url() ?>" width="500" alt="<?= $collection->name() . ' ' . $image->indexOf() + 1 ?>" loading="lazy">
+                                </picture>
                             </div>
                         <?php endforeach ?>
                     </div>

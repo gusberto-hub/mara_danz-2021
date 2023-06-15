@@ -7,12 +7,6 @@ columns:
       info:
         type: fields
         fields:
-          # collaborators:
-          #   label: Collaborators
-          #   type: textarea
-          #   size: small
-          #   width: 1/1
-          #   required: true
           layout:
             type: layout
             width: 1/2
