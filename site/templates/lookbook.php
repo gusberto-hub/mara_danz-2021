@@ -37,10 +37,8 @@
                 <?php foreach ($images as $image) : ?>
                     <div class='image-collection'>
                         <picture>
-                            <picture>
-                                <source srcset="<?= $image->thumb($options = ['width' => 400, 'format' => 'webp'])->url() ?>" type="image/webp">
-                                <img srcset="<?= $image->thumb($options = ['width' => 300])->url() ?>" alt="" loading="lazy">
-                            </picture>
+                            <source srcset="<?= $image->thumb($options = ['width' => 400, 'format' => 'webp'])->url() ?>" type="image/webp">
+                            <img srcset="<?= $image->thumb($options = ['width' => 300])->url() ?>" alt="" loading="lazy">
                         </picture>
                     </div>
                 <?php endforeach ?>
