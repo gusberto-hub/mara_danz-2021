@@ -59,7 +59,7 @@
             <?php endforeach ?>
         </div>
     </article>
-    </ma>
+</main>
 
 
-    <?php snippet('footer') ?>
+<?php snippet('footer') ?>

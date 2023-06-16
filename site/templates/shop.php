@@ -51,12 +51,14 @@
                         <div class='product-image-container'>
 
                             <picture class="main-image">
+                                <source media="(max-width: 420px)" srcset="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 300, 'format' => 'webp'])->url() ?>" type="image/webp">
                                 <source srcset="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 550, 'format' => 'webp'])->url() ?>" type="image/webp">
                                 <img loading="lazy" width="350" height="525" src="<?= $product->primaryimage()->toFile()->thumb($options = ['width' => 550])->url() ?>" alt="<?= $product->name() ?> main image" />
                             </picture>
 
                             <?php if ($product->secondaryimage()->isNotEmpty()) : ?>
                                 <picture class="second-image">
+                                    <source media="(max-width: 420px)" srcset="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 300, 'format' => 'webp'])->url() ?>" type="image/webp">
                                     <source srcset="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 550, 'format' => 'webp'])->url() ?>" type="image/webp">
                                     <img loading="lazy" width="350" height="525" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 550])->url() ?>" alt="<?= $product->name() ?> secondary image" />
                                 </picture>

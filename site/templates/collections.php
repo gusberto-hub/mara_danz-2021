@@ -56,10 +56,12 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
-
+            
         </article>
     <?php endforeach ?>
 
 </main>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <?php snippet('footer') ?>
