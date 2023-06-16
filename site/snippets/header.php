@@ -61,8 +61,8 @@
     <noscript>
         <img height="1" width="1" src="https://www.facebook.com/tr?id=639324087794593&ev=PageView&noscript=1" />
     </noscript>
-    <?= Bnomei\Fingerprint::css('assets/css/style.css'); ?>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <?= Bnomei\Fingerprint::css('assets/css/style.css'); ?>
     <title><?= $site->title() ?>
         <?php if ($page->parent() == 'shop') : ?>
             | Shop – <?= $page->title() ?>

@@ -3590,7 +3590,7 @@ collectionSwipers.forEach((swiper) => {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    loop: !swiperWithoutLoop ? false : true,
+    loop: swiperWithoutLoop ? false : true,
     centeredSlides: swiperWithoutLoop ? false : true,
     freeMode: swiperWithoutLoop ? false : true,
     zoom: {

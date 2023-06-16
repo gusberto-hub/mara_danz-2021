@@ -356,41 +356,6 @@
             }
           }
         }
-
-        .product-carousel {
-          height: 0;
-          margin: 0;
-          width: 100%;
-
-          @include breakpoint(sm) {
-            position: sticky;
-            top: 7rem;
-            max-height: 100%;
-            margin: 0 auto;
-          }
-          .flickity-button {
-            background: none;
-
-            svg {
-              fill: var(--color-bg-darker);
-            }
-          }
-
-          .carousel-cell {
-            width: 100%;
-            margin-right: 4rem;
-
-            @include breakpoint(sm) {
-              margin-right: 0;
-            }
-
-            img {
-              object-fit: cover;
-              width: 100%;
-              min-height: 100%;
-            }
-          }
-        }
       }
 
       &-description {
