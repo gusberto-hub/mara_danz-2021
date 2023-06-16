@@ -613,345 +613,6 @@ Math.easeOutElastic = function (t, b, c, d) {
   }
 })();
 
-// File#: _1_swipe-content
-(function () {
-  var SwipeContent = function (element) {
-    this.element = element;
-    this.delta = [false, false];
-    this.dragging = false;
-    this.intervalId = false;
-    initSwipeContent(this);
-  };
-
-  function initSwipeContent(content) {
-    content.element.addEventListener("mousedown", handleEvent.bind(content));
-    content.element.addEventListener("touchstart", handleEvent.bind(content));
-  }
-
-  function initDragging(content) {
-    //add event listeners
-    content.element.addEventListener("mousemove", handleEvent.bind(content));
-    content.element.addEventListener("touchmove", handleEvent.bind(content));
-    content.element.addEventListener("mouseup", handleEvent.bind(content));
-    content.element.addEventListener("mouseleave", handleEvent.bind(content));
-    content.element.addEventListener("touchend", handleEvent.bind(content));
-  }
-
-  function cancelDragging(content) {
-    //remove event listeners
-    if (content.intervalId) {
-      !window.requestAnimationFrame
-        ? clearInterval(content.intervalId)
-        : window.cancelAnimationFrame(content.intervalId);
-      content.intervalId = false;
-    }
-    content.element.removeEventListener("mousemove", handleEvent.bind(content));
-    content.element.removeEventListener("touchmove", handleEvent.bind(content));
-    content.element.removeEventListener("mouseup", handleEvent.bind(content));
-    content.element.removeEventListener(
-      "mouseleave",
-      handleEvent.bind(content)
-    );
-    content.element.removeEventListener("touchend", handleEvent.bind(content));
-  }
-
-  function handleEvent(event) {
-    switch (event.type) {
-      case "mousedown":
-      case "touchstart":
-        startDrag(this, event);
-        break;
-      case "mousemove":
-      case "touchmove":
-        drag(this, event);
-        break;
-      case "mouseup":
-      case "mouseleave":
-      case "touchend":
-        endDrag(this, event);
-        break;
-    }
-  }
-
-  function startDrag(content, event) {
-    content.dragging = true;
-    // listen to drag movements
-    initDragging(content);
-    content.delta = [
-      parseInt(unify(event).clientX),
-      parseInt(unify(event).clientY),
-    ];
-    // emit drag start event
-    emitSwipeEvents(content, "dragStart", content.delta, event.target);
-  }
-
-  function endDrag(content, event) {
-    cancelDragging(content);
-    // credits: https://css-tricks.com/simple-swipe-with-vanilla-javascript/
-    var dx = parseInt(unify(event).clientX),
-      dy = parseInt(unify(event).clientY);
-
-    // check if there was a left/right swipe
-    if (content.delta && (content.delta[0] || content.delta[0] === 0)) {
-      var s = getSign(dx - content.delta[0]);
-
-      if (Math.abs(dx - content.delta[0]) > 30) {
-        s < 0
-          ? emitSwipeEvents(content, "swipeLeft", [dx, dy])
-          : emitSwipeEvents(content, "swipeRight", [dx, dy]);
-      }
-
-      content.delta[0] = false;
-    }
-    // check if there was a top/bottom swipe
-    if (content.delta && (content.delta[1] || content.delta[1] === 0)) {
-      var y = getSign(dy - content.delta[1]);
-
-      if (Math.abs(dy - content.delta[1]) > 30) {
-        y < 0
-          ? emitSwipeEvents(content, "swipeUp", [dx, dy])
-          : emitSwipeEvents(content, "swipeDown", [dx, dy]);
-      }
-
-      content.delta[1] = false;
-    }
-    // emit drag end event
-    emitSwipeEvents(content, "dragEnd", [dx, dy]);
-    content.dragging = false;
-  }
-
-  function drag(content, event) {
-    if (!content.dragging) return;
-    // emit dragging event with coordinates
-    !window.requestAnimationFrame
-      ? (content.intervalId = setTimeout(function () {
-          emitDrag.bind(content, event);
-        }, 250))
-      : (content.intervalId = window.requestAnimationFrame(
-          emitDrag.bind(content, event)
-        ));
-  }
-
-  function emitDrag(event) {
-    emitSwipeEvents(this, "dragging", [
-      parseInt(unify(event).clientX),
-      parseInt(unify(event).clientY),
-    ]);
-  }
-
-  function unify(event) {
-    // unify mouse and touch events
-    return event.changedTouches ? event.changedTouches[0] : event;
-  }
-
-  function emitSwipeEvents(content, eventName, detail, el) {
-    var trigger = false;
-    if (el) trigger = el;
-    // emit event with coordinates
-    var event = new CustomEvent(eventName, {
-      detail: { x: detail[0], y: detail[1], origin: trigger },
-    });
-    content.element.dispatchEvent(event);
-  }
-
-  function getSign(x) {
-    if (!Math.sign) {
-      return (x > 0) - (x < 0) || +x;
-    } else {
-      return Math.sign(x);
-    }
-  }
-
-  window.SwipeContent = SwipeContent;
-
-  //initialize the SwipeContent objects
-  var swipe = document.getElementsByClassName("js-swipe-content");
-  if (swipe.length > 0) {
-    for (var i = 0; i < swipe.length; i++) {
-      (function (i) {
-        new SwipeContent(swipe[i]);
-      })(i);
-    }
-  }
-})();
-
-// File#: _2_image-zoom
-// Usage: codyhouse.co/license
-
-(function () {
-  var ImageZoom = function (element, index) {
-    this.element = element;
-    this.lightBoxId = "img-zoom-lightbox--" + index;
-    this.imgPreview = this.element.getElementsByClassName(
-      "js-image-zoom__preview"
-    )[0];
-
-    initImageZoomHtml(this); // init markup
-
-    this.lightbox = document.getElementById(this.lightBoxId);
-    this.imgEnlg = this.lightbox.getElementsByClassName("js-image-zoom__fw")[0];
-    this.input = this.element.getElementsByClassName("js-image-zoom__input")[0];
-    this.animate = this.element.getAttribute("data-morph") != "off";
-
-    initImageZoomEvents(this); //init events
-  };
-
-  function initImageZoomHtml(imageZoom) {
-    // get zoomed image url
-    var url = imageZoom.element.getAttribute("data-img");
-    if (!url) url = imageZoom.imgPreview.getAttribute("src");
-
-    var lightBox = document.createElement("div");
-    Util.setAttributes(lightBox, {
-      class: "image-zoom__lightbox js-image-zoom__lightbox",
-      id: imageZoom.lightBoxId,
-      "aria-hidden": "true",
-    });
-    lightBox.innerHTML =
-      '<img src="' + url + '" class="js-image-zoom__fw"></img>';
-    document.body.appendChild(lightBox);
-
-    var keyboardInput =
-      '<input aria-hidden="true" type="checkbox" class="image-zoom__input js-image-zoom__input"></input>';
-    imageZoom.element.insertAdjacentHTML("afterbegin", keyboardInput);
-  }
-
-  function initImageZoomEvents(imageZoom) {
-    // toggle lightbox on click
-    imageZoom.imgPreview.addEventListener("click", function (event) {
-      toggleFullWidth(imageZoom, true);
-      imageZoom.input.checked = true;
-    });
-    imageZoom.lightbox.addEventListener("click", function (event) {
-      toggleFullWidth(imageZoom, false);
-      imageZoom.input.checked = false;
-    });
-    // detect swipe down to close lightbox
-    new SwipeContent(imageZoom.lightbox);
-    imageZoom.lightbox.addEventListener("swipeDown", function (event) {
-      toggleFullWidth(imageZoom, false);
-      imageZoom.input.checked = false;
-    });
-    // keyboard accessibility
-    imageZoom.input.addEventListener("change", function (event) {
-      toggleFullWidth(imageZoom, imageZoom.input.checked);
-    });
-    imageZoom.input.addEventListener("keydown", function (event) {
-      if (
-        (event.keyCode && event.keyCode == 13) ||
-        (event.key && event.key.toLowerCase() == "enter")
-      ) {
-        imageZoom.input.checked = !imageZoom.input.checked;
-        toggleFullWidth(imageZoom, imageZoom.input.checked);
-      }
-    });
-  }
-
-  function toggleFullWidth(imageZoom, bool) {
-    if (animationSupported && imageZoom.animate) {
-      // start expanding animation
-      window.requestAnimationFrame(function () {
-        animateZoomImage(imageZoom, bool);
-      });
-    } else {
-      // show lightbox without animation
-      Util.toggleClass(
-        imageZoom.lightbox,
-        "image-zoom__lightbox--is-visible",
-        bool
-      );
-    }
-  }
-
-  function animateZoomImage(imageZoom, bool) {
-    // get img preview position and dimension for the morphing effect
-    var rect = imageZoom.imgPreview.getBoundingClientRect(),
-      finalWidth = imageZoom.lightbox.getBoundingClientRect().width;
-    var init = bool ? [rect.top, rect.left, rect.width] : [0, 0, finalWidth],
-      final = bool
-        ? [-rect.top, -rect.left, parseFloat(finalWidth / rect.width)]
-        : [
-            rect.top + imageZoom.lightbox.scrollTop,
-            rect.left,
-            parseFloat(rect.width / finalWidth),
-          ];
-
-    if (bool) {
-      imageZoom.imgEnlg.setAttribute(
-        "style",
-        "top: " +
-          init[0] +
-          "px; left:" +
-          init[1] +
-          "px; width:" +
-          init[2] +
-          "px;"
-      );
-    }
-
-    // show modal
-    Util.removeClass(imageZoom.lightbox, "image-zoom__lightbox--no-transition");
-    Util.addClass(imageZoom.lightbox, "image-zoom__lightbox--is-visible");
-
-    imageZoom.imgEnlg.addEventListener("transitionend", function cb(event) {
-      // reset elements once animation is over
-      if (!bool)
-        Util.removeClass(
-          imageZoom.lightbox,
-          "image-zoom__lightbox--is-visible"
-        );
-      Util.addClass(imageZoom.lightbox, "image-zoom__lightbox--no-transition");
-      imageZoom.imgEnlg.removeAttribute("style");
-      imageZoom.imgEnlg.removeEventListener("transitionend", cb);
-    });
-
-    // animate image and bg
-    imageZoom.imgEnlg.style.transform =
-      "translateX(" +
-      final[1] +
-      "px) translateY(" +
-      final[0] +
-      "px) scale(" +
-      final[2] +
-      ")";
-    Util.toggleClass(
-      imageZoom.lightbox,
-      "image-zoom__lightbox--animate-bg",
-      bool
-    );
-  }
-
-  // init ImageZoom object
-  var imageZoom = document.getElementsByClassName("js-image-zoom"),
-    animationSupported =
-      window.requestAnimationFrame && !Util.osHasReducedMotion();
-  if (imageZoom.length > 0) {
-    var imageZoomArray = [];
-    for (var i = 0; i < imageZoom.length; i++) {
-      imageZoomArray.push(new ImageZoom(imageZoom[i], i));
-    }
-
-    // close Zoom Image lightbox on Esc
-    window.addEventListener("keydown", function (event) {
-      if (
-        (event.keyCode && event.keyCode == 27) ||
-        (event.key && event.key.toLowerCase() == "esc")
-      ) {
-        for (var i = 0; i < imageZoomArray.length; i++) {
-          imageZoomArray[i].input.checked = false;
-          if (
-            Util.hasClass(
-              imageZoomArray[i].lightbox,
-              "image-zoom__lightbox--is-visible"
-            )
-          )
-            toggleFullWidth(imageZoomArray[i], false);
-        }
-      }
-    });
-  }
-})();
-
 /*!
  * Flickity PACKAGED v2.2.2
  * Touch, responsive, flickable carousels
@@ -3920,28 +3581,21 @@ Math.easeOutElastic = function (t, b, c, d) {
   return i;
 });
 
-// init Swiper:
-const swiper = new Swiper(".swiper", {
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  zoom: {
-    maxRatio: 3,
-  },
-});
-
 const collectionSwipers = document.querySelectorAll(".swiper-collection");
 
 collectionSwipers.forEach((swiper) => {
+  const swiperWithoutLoop = swiper.classList.contains("noLoop");
   const collectionSwiper = new Swiper(swiper, {
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    loop: true,
-    centeredSlides: true,
-    freeMode: true,
+    loop: !swiperWithoutLoop ? false : true,
+    centeredSlides: swiperWithoutLoop ? false : true,
+    freeMode: swiperWithoutLoop ? false : true,
+    zoom: {
+      maxRatio: swiperWithoutLoop ? 3 : 1,
+    },
   });
 });
 
@@ -3951,17 +3605,8 @@ const container = document.querySelector("body");
 const sections = document.querySelectorAll("section");
 const collections = document.querySelectorAll("#collections article");
 const navigation = document.querySelector(".navigation");
-// let isMobileDevice = false;
-
-// function checkIfMobile() {
-//   isMobileDevie =
-//     window.getComputedStyle(navigation).content == `"mobile"`
-//       ? (isMobileDevice = true)
-//       : (isMobileDevice = false);
-//   console.log(isMobileDevice);
-// }
-
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 ScrollTrigger.defaults({
   markers: false,
 });
@@ -4020,12 +3665,6 @@ ScrollTrigger.matchMedia({
   },
 });
 
-// make the right edge "stick" to the scroll bar. force3D: true improves performance
-// gsap.set(".image-collection", {
-//   transformOrigin: "center center",
-//   force3D: true,
-// });
-
 window.onload = () => {
   const flowImages = document.querySelectorAll(".flow-image");
   for (let [index, flowImage] of flowImages.entries()) {
@@ -4062,7 +3701,6 @@ window.onload = () => {
 
 "use strict";
 
-const carousels = document.querySelectorAll(".main-carousel");
 const filterAccordion = document.querySelector(".filter-accordion");
 const infoButtons = document.querySelectorAll(".info-button");
 
@@ -4084,55 +3722,38 @@ for (let infoButton of infoButtons) {
   };
 }
 
-// Flickity Carousels
-carousels.forEach((carousel) => {
-  const flkty = new Flickity(carousel, {
-    lazyLoad: 1,
-    pageDots: false,
-    wrapAround: true,
-    freeScroll: true,
-    watchCSS: true,
+const lookbookCarousel = document.querySelector(".fullscreen-carousel");
+let lookbookCarouselInstance;
+
+if (lookbookCarousel) {
+  lookbookCarouselInstance = {
+    flkty: new Flickity(document.querySelector(".fullscreen-carousel"), {
+      lazyLoad: 1,
+      pageDots: false,
+      cellSelector: ".carousel-cell",
+    }),
+    carousel: document.querySelector(".fullscreen-carousel"),
+    lookbookImages: document.querySelectorAll(
+      "#lookbook .image-container picture"
+    ),
+    closeButton: document.querySelector("#close-fullscreen"),
+    isVisible: false,
+  };
+
+  lookbookCarouselInstance.closeButton?.addEventListener("click", () => {
+    lookbookCarouselInstance.carousel.style.visibility = "hidden";
   });
-});
 
-const lookbookCarousel = {
-  flkty: new Flickity(document.querySelector(".fullscreen-carousel"), {
-    lazyLoad: 1,
-    pageDots: false,
-    cellSelector: ".carousel-cell",
-  }),
-  carousel: document.querySelector(".fullscreen-carousel"),
-  lookbookImages: document.querySelectorAll(
-    "#lookbook .image-container picture"
-  ),
-  closeButton: document.querySelector("#close-fullscreen"),
-  isVisible: false,
-};
+  for (let i = 0; i < lookbookCarouselInstance.lookbookImages.length; i++) {
+    const image = lookbookCarouselInstance.lookbookImages[i];
+    image.addEventListener("click", () => {
+      lookbookCarouselInstance.carousel.style.visibility = "visible";
+      lookbookCarouselInstance.flkty.select(i, true, true);
+    });
+  }
 
-lookbookCarousel.closeButton?.addEventListener("click", () => {
-  lookbookCarousel.carousel.style.visibility = "hidden";
-});
-
-for (let i = 0; i < lookbookCarousel.lookbookImages.length; i++) {
-  const image = lookbookCarousel.lookbookImages[i];
-  image.addEventListener("click", () => {
-    console.log(i + 1);
-    lookbookCarousel.carousel.style.visibility = "visible";
-    lookbookCarousel.flkty.select(i, true, true);
-  });
+  window.onresize = () => lookbookCarouselInstance.flkty.resize();
 }
-
-const productCarousel = {
-  element: document.querySelector(".product-carousel"),
-  flkty: !this.element
-    ? new Flickity(document.querySelector(".product-carousel"), {
-        lazyLoad: 1,
-        pageDots: false,
-      })
-    : null,
-};
-
-window.onresize = () => productCarousel.flkty.resize();
 
 //TERMS AND CONDITIONS POP UP
 const openTerms = document.querySelector(".open-terms");
@@ -4225,8 +3846,8 @@ filterAccordion?.addEventListener("click", (el) => {
     for (var i = 0; i < anchorsArray.length; i++) {
       // Get hrefs from each anchor
       var anchorID = anchorsArray[i].getAttribute("href");
-      var sectionHeight = sectionsArray[i].offsetHeight;
-      var sectionTop = sectionsArray[i].offsetTop;
+      var sectionHeight = sectionsArray[i]?.offsetHeight;
+      var sectionTop = sectionsArray[i]?.offsetTop;
 
       if (anchorID.includes("#")) {
         if (

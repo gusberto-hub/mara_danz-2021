@@ -306,7 +306,7 @@
         width: 100%;
         margin-bottom: var(--space-xxs);
 
-        .swiper {
+        .swiper-collection {
           width: 1000px;
           max-width: calc(100vw - 2 * #{$padding-page});
           position: relative;
