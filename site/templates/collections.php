@@ -39,7 +39,6 @@
                             </picture>
                         </div>
                     <?php endforeach ?>
-                    ssss
                 </div>
                 <div class="swiper-collection">
                     <div class="swiper-wrapper">
@@ -56,7 +55,7 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
-            
+
         </article>
     <?php endforeach ?>
 

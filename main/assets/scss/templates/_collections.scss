@@ -257,28 +257,34 @@
     transform: translate(-50%, -50%);
     z-index: 9;
     width: var(--width-carousel);
+    max-width: 40rem;
     height: calc(var(--width-carousel) * 1.5);
+    max-height: calc(40rem * 1.5);
     background: var(--color-bg);
     visibility: hidden;
 
     outline: 2px solid var(--color-primary);
 
     @include breakpoint(sm) {
-      --width-carousel: calc(var(--viewport-height) * 0.53);
-
-      .flickity-button {
-        display: block;
-      }
+      // --width-carousel: calc(var(--viewport-height) * 0.53);
     }
 
     .flickity-button {
       display: none;
+      @include breakpoint(sm) {
+        display: block;
+        background: none;
+        opacity: 0.3;
+      }
+    }
+
+    .flickity-viewport {
+      height: 100% !important;
     }
 
     .carousel-cell {
       height: 100%;
       width: 100%;
-      // margin-right: $padding-page;
 
       picture {
         width: 100%;
