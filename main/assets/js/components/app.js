@@ -1,6 +1,5 @@
 "use strict";
 
-const carousels = document.querySelectorAll(".main-carousel");
 const filterAccordion = document.querySelector(".filter-accordion");
 const infoButtons = document.querySelectorAll(".info-button");
 
@@ -22,55 +21,38 @@ for (let infoButton of infoButtons) {
   };
 }
 
-// Flickity Carousels
-carousels.forEach((carousel) => {
-  const flkty = new Flickity(carousel, {
-    lazyLoad: 1,
-    pageDots: false,
-    wrapAround: true,
-    freeScroll: true,
-    watchCSS: true,
+const lookbookCarousel = document.querySelector(".fullscreen-carousel");
+let lookbookCarouselInstance;
+
+if (lookbookCarousel) {
+  lookbookCarouselInstance = {
+    flkty: new Flickity(document.querySelector(".fullscreen-carousel"), {
+      lazyLoad: 1,
+      pageDots: false,
+      cellSelector: ".carousel-cell",
+    }),
+    carousel: document.querySelector(".fullscreen-carousel"),
+    lookbookImages: document.querySelectorAll(
+      "#lookbook .image-container picture"
+    ),
+    closeButton: document.querySelector("#close-fullscreen"),
+    isVisible: false,
+  };
+
+  lookbookCarouselInstance.closeButton?.addEventListener("click", () => {
+    lookbookCarouselInstance.carousel.style.visibility = "hidden";
   });
-});
 
-const lookbookCarousel = {
-  flkty: new Flickity(document.querySelector(".fullscreen-carousel"), {
-    lazyLoad: 1,
-    pageDots: false,
-    cellSelector: ".carousel-cell",
-  }),
-  carousel: document.querySelector(".fullscreen-carousel"),
-  lookbookImages: document.querySelectorAll(
-    "#lookbook .image-container picture"
-  ),
-  closeButton: document.querySelector("#close-fullscreen"),
-  isVisible: false,
-};
+  for (let i = 0; i < lookbookCarouselInstance.lookbookImages.length; i++) {
+    const image = lookbookCarouselInstance.lookbookImages[i];
+    image.addEventListener("click", () => {
+      lookbookCarouselInstance.carousel.style.visibility = "visible";
+      lookbookCarouselInstance.flkty.select(i, true, true);
+    });
+  }
 
-lookbookCarousel.closeButton?.addEventListener("click", () => {
-  lookbookCarousel.carousel.style.visibility = "hidden";
-});
-
-for (let i = 0; i < lookbookCarousel.lookbookImages.length; i++) {
-  const image = lookbookCarousel.lookbookImages[i];
-  image.addEventListener("click", () => {
-    console.log(i + 1);
-    lookbookCarousel.carousel.style.visibility = "visible";
-    lookbookCarousel.flkty.select(i, true, true);
-  });
+  window.onresize = () => lookbookCarouselInstance.flkty.resize();
 }
-
-const productCarousel = {
-  element: document.querySelector(".product-carousel"),
-  flkty: !this.element
-    ? new Flickity(document.querySelector(".product-carousel"), {
-        lazyLoad: 1,
-        pageDots: false,
-      })
-    : null,
-};
-
-window.onresize = () => productCarousel.flkty.resize();
 
 //TERMS AND CONDITIONS POP UP
 const openTerms = document.querySelector(".open-terms");
@@ -163,8 +145,8 @@ filterAccordion?.addEventListener("click", (el) => {
     for (var i = 0; i < anchorsArray.length; i++) {
       // Get hrefs from each anchor
       var anchorID = anchorsArray[i].getAttribute("href");
-      var sectionHeight = sectionsArray[i].offsetHeight;
-      var sectionTop = sectionsArray[i].offsetTop;
+      var sectionHeight = sectionsArray[i]?.offsetHeight;
+      var sectionTop = sectionsArray[i]?.offsetTop;
 
       if (anchorID.includes("#")) {
         if (

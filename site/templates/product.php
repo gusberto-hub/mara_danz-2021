@@ -35,10 +35,7 @@
                 </div>
                 <div class="product-images">
 
-                    <div class="swiper">
-                        <!-- <div class="swiper-info">
-                            <p>doubleklick to zoom</p>
-                        </div> -->
+                    <div class="swiper swiper-collection noLoop">
                         <?php if ($product->availability_status()->isNotEmpty()) : ?>
                             <div class="product-availability">
                                 <p><?= $product->availability_status() ?></p>
@@ -149,6 +146,7 @@
         </main>
     </article>
 </div>
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script>
     const button = document.querySelector('.snipcart-add-item')
     let sizes = document.querySelectorAll('input[name="size"]');

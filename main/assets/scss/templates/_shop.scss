@@ -306,7 +306,7 @@
         width: 100%;
         margin-bottom: var(--space-xxs);
 
-        .swiper {
+        .swiper-collection {
           width: 1000px;
           max-width: calc(100vw - 2 * #{$padding-page});
           position: relative;
@@ -353,41 +353,6 @@
               100% {
                 opacity: 0;
               }
-            }
-          }
-        }
-
-        .product-carousel {
-          height: 0;
-          margin: 0;
-          width: 100%;
-
-          @include breakpoint(sm) {
-            position: sticky;
-            top: 7rem;
-            max-height: 100%;
-            margin: 0 auto;
-          }
-          .flickity-button {
-            background: none;
-
-            svg {
-              fill: var(--color-bg-darker);
-            }
-          }
-
-          .carousel-cell {
-            width: 100%;
-            margin-right: 4rem;
-
-            @include breakpoint(sm) {
-              margin-right: 0;
-            }
-
-            img {
-              object-fit: cover;
-              width: 100%;
-              min-height: 100%;
             }
           }
         }

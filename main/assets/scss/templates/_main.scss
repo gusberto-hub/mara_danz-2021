@@ -167,12 +167,11 @@ h6 {
     }
 
     .page-title {
-      z-index: 0;
       grid-row: 1;
       grid-column: 1/-1;
       position: sticky;
       top: calc(#{$padding-top});
-      z-index: 1;
+      z-index: -1;
       mix-blend-mode: difference;
       max-width: var(--max-content-width);
 

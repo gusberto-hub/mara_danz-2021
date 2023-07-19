@@ -2,17 +2,8 @@ const container = document.querySelector("body");
 const sections = document.querySelectorAll("section");
 const collections = document.querySelectorAll("#collections article");
 const navigation = document.querySelector(".navigation");
-// let isMobileDevice = false;
-
-// function checkIfMobile() {
-//   isMobileDevie =
-//     window.getComputedStyle(navigation).content == `"mobile"`
-//       ? (isMobileDevice = true)
-//       : (isMobileDevice = false);
-//   console.log(isMobileDevice);
-// }
-
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
 ScrollTrigger.defaults({
   markers: false,
 });
@@ -70,12 +61,6 @@ ScrollTrigger.matchMedia({
     });
   },
 });
-
-// make the right edge "stick" to the scroll bar. force3D: true improves performance
-// gsap.set(".image-collection", {
-//   transformOrigin: "center center",
-//   force3D: true,
-// });
 
 window.onload = () => {
   const flowImages = document.querySelectorAll(".flow-image");

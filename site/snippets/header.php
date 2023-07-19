@@ -61,6 +61,10 @@
     <noscript>
         <img height="1" width="1" src="https://www.facebook.com/tr?id=639324087794593&ev=PageView&noscript=1" />
     </noscript>
+    <?php if (page('shop')->isOpen()) : ?>
+        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
+        <?= Bnomei\Fingerprint::css('assets/css/snipcart.css'); ?>
+    <?php endif ?>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <?= Bnomei\Fingerprint::css('assets/css/style.css'); ?>
     <title><?= $site->title() ?>

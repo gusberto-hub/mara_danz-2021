@@ -39,7 +39,6 @@
                             </picture>
                         </div>
                     <?php endforeach ?>
-                    ssss
                 </div>
                 <div class="swiper-collection">
                     <div class="swiper-wrapper">
@@ -61,5 +60,7 @@
     <?php endforeach ?>
 
 </main>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <?php snippet('footer') ?>
