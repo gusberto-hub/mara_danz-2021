@@ -88,12 +88,6 @@ h4 {
 a,
 .link {
   text-decoration: none;
-
-  &:hover {
-    > *:not(.product-image) {
-      @extend .accent-color-difference;
-    }
-  }
 }
 
 mark {

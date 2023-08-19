@@ -33,6 +33,16 @@ body {
 
 .is-active {
   @extend .accent-color-difference;
+  // color: black;
+  // position: relative;
+
+  // &::before {
+  //   content: "";
+  //   background: var(--bg-color);
+  //   position: absolute;
+  //   inset: 0 -0.3em;
+  //   z-index: -1;
+  // }
 }
 
 .heading-font {
@@ -137,7 +147,7 @@ h6 {
   right: env(safe-area-inset-right);
   padding-top: $padding-top;
   display: grid;
-  animation: fadeContainerIn 600ms linear forwards;
+  animation: fadeContainerIn 200ms linear forwards;
 
   a {
     transition: color 100ms linear;
