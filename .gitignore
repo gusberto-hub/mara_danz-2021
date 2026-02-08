@@ -51,4 +51,9 @@ Icon
 # ---------------
 /content/*
 
+# Dependencies
+# ---------------
+/vendor
+/kirby
+
 node_modules
