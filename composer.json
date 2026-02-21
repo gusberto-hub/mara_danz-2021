@@ -18,10 +18,9 @@
         "source": "https://github.com/getkirby/starterkit"
     },
     "require": {
-        "php": ">=7.1.0",
-        "getkirby/cms": "^3.0",
-        "bnomei/kirby3-fingerprint": "^3.0",
-        "timoetting/kirby-color": "^1.0"
+        "php": ">=8.2",
+        "getkirby/cms": "^5.0",
+        "bnomei/kirby3-fingerprint": "^5.0"
     },
     "scripts": {
         "start": [

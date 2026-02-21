@@ -10,8 +10,8 @@ tabs:
               color:
                 label: Highlight Color
                 type: color
-                editableAlpha: false # (optional) if set to false, alpha value controls are not displayed
-                default: "#EFCB69" # (optional)
+                alpha: false
+                default: "#EFCB69"
           pages:
             type: pages
             layout: list
