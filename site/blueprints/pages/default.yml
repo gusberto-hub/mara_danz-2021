@@ -1,5 +1,6 @@
-title: Default Page
-preset: page
+title: Page
+icon: page
+
 fields:
   text:
     label: Text

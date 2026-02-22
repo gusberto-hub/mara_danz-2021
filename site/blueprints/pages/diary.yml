@@ -1,6 +1,9 @@
-title: Campaign
+title: Diary
+icon: book
+
 sections:
   pages:
+    type: pages
     layout: cards
     size: small
     image:
