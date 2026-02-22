@@ -1,4 +1,9 @@
 title: Lookbook
+icon: images
+
+navigation:
+  status: all
+  sortBy: title asc
 
 columns:
   main:
@@ -11,13 +16,12 @@ columns:
             label: Collaborators
             type: textarea
             size: small
-            width: 1/1
 
   sidebar:
     width: 1/1
     sections:
       published:
-        headline: uploaded images
+        headline: Uploaded Images
         type: files
         status: listed
         layout: cards

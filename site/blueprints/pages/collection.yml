@@ -1,4 +1,10 @@
 title: Collection
+icon: folder
+
+navigation:
+  status: all
+  sortBy: title asc
+
 columns:
   - width: 1/2
     sections:
@@ -11,13 +17,12 @@ columns:
           year:
             label: Year
             type: text
-
           description:
             label: Description
             type: textarea
             size: small
 
-      Pages:
+      published:
         headline: Published
         type: pages
         layout: list
@@ -26,7 +31,7 @@ columns:
           ratio: 4/5
           cover: true
       not_listed:
-        headline: Not listed
+        headline: Not Listed
         type: pages
         status: unlisted
       drafts:
@@ -39,8 +44,8 @@ columns:
 
   - width: 1/2
     sections:
-      Files:
-        headline: files
+      files:
+        headline: Files
         type: files
         layout: cards
         image:

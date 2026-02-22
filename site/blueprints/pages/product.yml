@@ -1,4 +1,9 @@
 title: Product
+icon: tag
+
+navigation:
+  status: all
+  sortBy: title asc
 
 columns:
   - width: 1/2
@@ -10,30 +15,25 @@ columns:
             label: Name
             type: text
             required: true
-            width: 1/1
-
-          # available:
-          #   label: Available
-          #   type: toggle
-          #   default: true
-          #   width: 1/4
 
           availability_status:
-            label: Availability status
+            label: Status
             type: select
+            default: available
             options:
               - coming soon
               - sold out
-            width: 1/4
+              - available
+            width: 1/2
 
-          item_reloved:
-            label: Reloved?
-            type: toggle
-            default: false
-            width: 1/4
+          # item_reloved:
+          #   label: Reloved?
+          #   type: toggle
+          #   default: false
+          #   width: 1/4
 
           Price:
-            label: Price
+            label: Price in CHF
             type: number
             width: 1/2
             required: true
@@ -80,14 +80,8 @@ columns:
                 label: Content
                 type: textarea
 
-          # customfield:
-          #   label: Custom field
-          #   type: textarea
-          #   size: small
-          #   help: "Additional informations reguarding shipping, production, etc."
-
           primaryimage:
-            label: Main image
+            label: Main Image
             type: files
             layout: cards
             size: small
@@ -98,7 +92,7 @@ columns:
             width: 1/2
 
           secondaryimage:
-            label: Second image
+            label: Second Image
             type: files
             layout: cards
             size: small
@@ -110,6 +104,7 @@ columns:
   - width: 1/2
     sections:
       Images:
+        headline: Gallery
         type: files
         layout: cards
         image:

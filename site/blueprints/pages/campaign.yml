@@ -1,4 +1,9 @@
 title: Campaign
+icon: image
+
+navigation:
+  status: all
+  sortBy: title asc
 
 columns:
   main:
@@ -21,7 +26,7 @@ columns:
     width: 1/1
     sections:
       published:
-        headline: uploaded images
+        headline: Uploaded Images
         type: files
         status: listed
         layout: cards

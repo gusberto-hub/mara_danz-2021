@@ -1,11 +1,14 @@
 title: Site
+
 tabs:
   startscreen:
-      label: Start Screen
+    label: Start Screen
+    icon: home
     columns:
       - width: 1/2
         sections:
           fields:
+            type: fields
             fields:
               color:
                 label: Highlight Color
@@ -14,115 +17,140 @@ tabs:
                 default: "#EFCB69"
           pages:
             type: pages
+            headline: Pages
             layout: list
             size: medium
-            status: listed
+            query: site.children.filterBy('intendedTemplate', 'not in', ['home', 'error'])
+            info: "{{ page.Status }}"
+            create: false
 
-          not_listed:
-            headline: Not listed
-            type: pages
-            layout: list
-            size: medium
-            status: unlisted
-
-          drafts:
-            headline: Drafts
-            type: pages
-            layout: list
-            size: medium
-            status: drafts
-            
       - width: 1/2
-        fields:
-          startscreen:
-            label: Start Screen
-            type: headline
-            numbered: false
-          button_text:
-            label: Button Text
-            type: text
-            required: true
-          futured:
-            label: Linked Page
-            type: pages
-            multiple: false
-          logo_layer:
-            label: Logo Layer
-            type: files
-            layout: cards
-            size: medium
-            image:
-              background: white
-            uploads: 
-              template: files-upload
-            accept: image/png, image/jpg. image/jpeg
-            multiple: false
-          background:
-            label: Background
-            type: files
-            layout: cards
-            size: medium
-            image:
-              background: white
-            uploads: 
-              template: files-upload
-            multiple: false
-          background_mobile:
-            label: Background mobile
-            type: files
-            layout: cards
-            size: medium
-            image:
-              background: white
-            uploads: 
-              template: files-upload
-            multiple: false
+        sections:
+          startscreen_fields:
+            type: fields
+            fields:
+              backgroundSettings:
+                label: Background Settings
+                type: headline
+              logo_layer:
+                label: Logo Layer
+                type: files
+                layout: cards
+                size: medium
+                image:
+                  background: white
+                uploads:
+                  template: files-upload
+                accept:
+                  - image/png
+                  - image/jpg
+                  - image/jpeg
+                multiple: false
+              background:
+                label: Background
+                type: files
+                layout: cards
+                size: medium
+                image:
+                  background: white
+                uploads:
+                  template: files-upload
+                multiple: false
+              background_mobile:
+                label: Background (Mobile)
+                type: files
+                layout: cards
+                size: medium
+                image:
+                  background: white
+                uploads:
+                  template: files-upload
+                multiple: false
 
       - width: 1/1
         sections:
           files:
+            headline: Site Files
             type: files
             layout: list
             size: medium
-            status: listed
 
   infobox:
-      label:
-      sections:
-    fields:
-      contact_section:
-        label: Contact
-        type: headline
-        numbered: false
-      customfield_title:
-        label: Custom Field Title
-        type: text
-      customfield:
-        label: Custom Field Content
-        type: textarea
-      address:
-        label: Address block
-        type: textarea
-      mail:
-        label: Mail
-        type: email
-      phone:
-        label: Phone
-        type: tel
-      instagram:
-        label: Instagram
-        type: url
-        width: 1/2
-      instagram_handle:
-        label: Instagram handle
-        type: text
-        width: 1/2
-      newsletter:
-        label: Newsletter
-        type: url
-      metaDescription:
-        label: Meta Description
-        type: textarea
-        size: small
-        buttons: false
-        help: "This is the text google shows in the resulst. Meta descriptions can be any length, but Google generally truncates snippets to ~155–160 characters. Keep meta descriptions long enough that they're sufficiently descriptive, some sources recommend descriptions between 50–160 characters."
+    label: Contact & Footer
+    icon: cog
+    columns:
+      - width: 1/2
+        sections:
+          contact:
+            type: fields
+            fields:
+              contactHeadline:
+                label: Contact
+                type: headline
+              address:
+                label: Address
+                type: textarea
+              mail:
+                label: Email
+                type: email
+              phone:
+                label: Phone
+                type: tel
+              instagram:
+                label: Instagram URL
+                type: url
+                width: 1/2
+              instagram_handle:
+                label: Instagram Handle
+                type: text
+                width: 1/2
+              newsletter:
+                label: Newsletter URL
+                type: url
+
+      - width: 1/2
+        sections:
+          social:
+            type: fields
+            fields:
+              footerSettings:
+                label: Footer Settings
+                type: headline
+                help: Add text and a linked page to the footer. This will only be displayed on the start/index screen. Can for example be used to promote a project or product.
+              button_text:
+                label: Footer Text
+                type: text
+                required: true
+              futured:
+                label: Footer Linked Page
+                type: pages
+                multiple: false
+                help: This page will be linked in the footer.
+                query: site.children.listed
+              customFieldHeadline:
+                label: Custom Footer Field
+                type: headline
+                help: This field will be displayed in the footer.
+              customfield_title:
+                label: Title
+                type: text
+              customfield:
+                label: Content
+                type: textarea
+
+  seo:
+    label: SEO
+    icon: search
+    columns:
+      - width: 2/3
+        sections:
+          meta:
+            type: fields
+            fields:
+              metaDescription:
+                label: Meta Description
+                type: textarea
+                counter: false
+                size: small
+                buttons: false
+                help: Google typically truncates snippets to ~155-160 characters. Aim for 50-160 characters.

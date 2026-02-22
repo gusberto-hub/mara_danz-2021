@@ -1,7 +1,9 @@
 title: Collections
+icon: grid
+
 sections:
-  commissions:
-    headline: published
+  published:
+    headline: Published
     type: pages
     layout: cards
     size: small
@@ -11,13 +13,13 @@ sections:
       back: black
     status: listed
 
-  commissions_unlisted:
+  unlisted:
     headline: Unlisted
     type: pages
     status: unlisted
 
-  commissions_drafts:
+  drafts:
     headline: Drafts
     type: pages
     status: draft
-    template: project
+    template: collection
