@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 
 <main id="start-screen">
     <div hidden>
@@ -245,4 +245,5 @@
     }
 </script>
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

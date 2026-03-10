@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 <header class="header-shop">
     <div class="sub-menu sub-menu-shop">
         <ul>
@@ -98,4 +98,5 @@
 </div>
 <cart isSideCart="true" editingCart="true"> </cart>
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

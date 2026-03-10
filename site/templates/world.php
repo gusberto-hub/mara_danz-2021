@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 
 <header>
     <div class="sub-menu">
@@ -51,4 +51,5 @@
 </div>
 
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

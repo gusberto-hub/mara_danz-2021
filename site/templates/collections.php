@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 <header>
     <div class="sub-menu">
         <ul>
@@ -63,4 +63,5 @@
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

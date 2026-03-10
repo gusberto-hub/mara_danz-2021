@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 
 <header>
     <?php $children = $page->children()->listed()?>
@@ -33,4 +33,5 @@
 </div>
 
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

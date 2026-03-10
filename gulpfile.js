@@ -11,7 +11,7 @@ const rename = require("gulp-rename");
 const purgecss = require("gulp-purgecss");
 const terser = require("gulp-terser");
 const connect = require("gulp-connect-php");
-const projectPath = "mara_danz-2021.test"; // 👈 make sure to replace 'projectName' with the name of your project folder
+const projectPath = "https://mara-danz.project.test"; // DDEV project URL used by BrowserSync proxy
 
 // js file paths
 const utilJsPath = "main/assets/js";
@@ -76,7 +76,6 @@ gulp.task(
       browserSync({
         proxy: projectPath,
         notify: false,
-        browser: "firefox",
       });
     });
     gulp.watch("**/*.php", gulp.series(reload));

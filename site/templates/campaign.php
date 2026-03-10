@@ -1,7 +1,7 @@
 <?php
 $collection = $page->parent();
-snippet('header');
-snippet('navigation');
+snippet('layout', slots: true);
+slot();
 snippet('sub_nav_collection', ['collection' => $collection]);
 ?>
 
@@ -22,4 +22,5 @@ snippet('sub_nav_collection', ['collection' => $collection]);
 </div>
 
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

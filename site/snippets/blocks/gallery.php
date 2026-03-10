@@ -4,7 +4,6 @@
 
 <div class="gallery-block block">
     <?php foreach ($block->images()->toFiles() as $image) : ?>
-
         <picture>
             <source media="(max-width: 420px)" srcset="<?= $image->thumb(['width' => 400, 'format' => 'webp'])->url() ?>" />
             <source srcset="<?= $image->thumb(['width' => 2200, 'format' => 'webp'])->url() ?>" type="image/webp" />
@@ -12,3 +11,4 @@
         </picture>
     <?php endforeach ?>
 </div>
+<p><?= $block->caption() ?></p>
