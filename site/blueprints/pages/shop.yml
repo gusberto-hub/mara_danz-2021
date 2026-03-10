@@ -1,21 +1,31 @@
 title: Shop
+icon: cart
+
 tabs:
   items:
+    label: Products
+    icon: grid
     sections:
-      Items:
+      listed:
+        headline: Published
         type: pages
-        layout: cards
+        layout: cardlets
         status: listed
+        info: "{{ page.Identifier }} · {{ page.Price }} CHF"
         image:
           ratio: 4/5
           cover: true
-      not_published:
+      drafts:
+        headline: Drafts
         type: pages
-        layout: cards
+        layout: cardlets
         status: drafts
+        info: "{{ page.Identifier }} · {{ page.Price }} CHF"
         template: product
 
   info:
+    label: Settings
+    icon: cog
     sections:
       info:
         type: fields
@@ -23,12 +33,10 @@ tabs:
           categories:
             label: Categories
             type: tags
-
           sizes:
             label: Sizes
             type: tags
-
           terms_conditions:
-            label: Terms and conditions
+            label: Terms & Conditions
             type: textarea
             size: medium

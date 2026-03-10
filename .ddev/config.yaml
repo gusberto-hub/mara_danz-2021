@@ -1,0 +1,15 @@
+name: mara-danz
+type: php
+docroot: ""
+php_version: "8.3"
+webserver_type: apache-fpm
+nodejs_version: "20"
+composer_version: "2"
+
+omit_containers: [db]
+disable_upload_dirs_warning: true
+
+hooks:
+  post-start:
+    - exec: composer install
+    - exec: npm install
