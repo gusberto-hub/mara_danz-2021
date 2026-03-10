@@ -1,7 +1,7 @@
 <?php
 
 return [
-'debug' => true,
+'debug' => !in_array($_SERVER['HTTP_HOST'] ?? '', ['maradanz.com', 'www.maradanz.com'], true),
 
 'routes' => [
 [
