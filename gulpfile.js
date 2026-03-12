@@ -4,11 +4,8 @@ const sassGlob = require("gulp-sass-glob");
 const browserSync = require("browser-sync");
 const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
-const cssvariables = require("postcss-css-variables");
-const calc = require("postcss-calc");
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
-const purgecss = require("gulp-purgecss");
 const terser = require("gulp-terser");
 const connect = require("gulp-connect-php");
 const projectPath = "https://mara-danz.project.test"; // DDEV project URL used by BrowserSync proxy
@@ -34,11 +31,6 @@ gulp.task("sass", function () {
       .pipe(sassGlob())
       .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
       .pipe(postcss([autoprefixer()]))
-      // .pipe(
-      //   purgecss({
-      //     content: ["site/**/*.php"],
-      //   })
-      // )
       .pipe(gulp.dest(cssFolder))
       .pipe(
         browserSync.reload({
