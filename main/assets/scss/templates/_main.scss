@@ -21,6 +21,10 @@
 
 // GENERAL SETTINGS AND CLASSES
 
+@view-transition {
+  navigation: auto;
+}
+
 html,
 body {
   scroll-behavior: smooth;
@@ -141,12 +145,11 @@ h6 {
 
 .main-container {
   background: var(--color-bg);
-  padding: 0 $padding-page;
-  position: absolute;
   left: env(safe-area-inset-left);
   right: env(safe-area-inset-right);
+  padding-inline: $padding-page;
   padding-top: $padding-top;
-  display: grid;
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--info-box-height) + #{$padding-page});
   animation: fadeContainerIn 200ms linear forwards;
 
   a {
@@ -168,7 +171,7 @@ h6 {
     display: grid;
     grid-template-columns: 1fr;
     gap: $padding-page;
-    margin-bottom: calc(var(--info-box-height) + #{$padding-page});
+    // margin-bottom: calc(var(--info-box-height) + #{$padding-page});
     position: relative;
     max-width: var(--max-content-width);
 

@@ -1,7 +1,17 @@
 @use "../custom-style/variables" as *;
 
 .info-box {
+  $info-box: &;
+
   width: 100vw;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  height: var(--info-box-height);
+  background: var(--bg-color);
+  padding: 0 calc(env(safe-area-inset-right) + #{$padding-page}) env(safe-area-inset-bottom)
+    calc(env(safe-area-inset-left) + #{$padding-page});
 
   & * {
     @extend .body-font;
@@ -13,24 +23,16 @@
     @include breakpoint(sm) {
       text-align: left;
     }
-  }
+  };
 
-  & .info-header {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 99;
+  &__header {
     width: 100%;
-    height: calc(var(--info-box-height) + (env(safe-area-inset-bottom) / 4));
-    background: var(--bg-color);
+    height: stretch;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 300ms linear;
-    padding: 0 calc(env(safe-area-inset-right) + #{$padding-page}) 0
-      calc(env(safe-area-inset-left) + #{$padding-page});
 
-    .info-button {
+    #{$info-box}__button {
       position: relative;
 
       button {
@@ -62,7 +64,7 @@
       }
     }
 
-    .info-logo {
+    .info-box__logo {
       transition: all 200ms ease;
       img {
         margin-top: 0.1em;
@@ -79,11 +81,12 @@
     }
   }
 
-  & .info-container {
-    position: fixed;
+  &__container {
+    position: absolute;
     left: 0;
+    bottom: var(--info-box-height);
     width: 100%;
-    height: var(--viewport-height);
+    height: calc(var(--viewport-height) - var(--info-box-height));
 
     display: grid;
     gap: $padding-page * 2;
@@ -91,8 +94,8 @@
     padding: 1em $padding-page;
     background: var(--bg-color);
     overflow-y: scroll;
-    transition: transform 400ms ease;
-    z-index: 90;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
     transform: translateY(100%);
 
     @include breakpoint(sm) {
@@ -100,10 +103,9 @@
       bottom: 0;
       height: max-content;
       overflow: visible;
-      transition-duration: 1s;
     }
 
-    .info-symbol {
+    .info-box__symbol {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -131,7 +133,7 @@
       }
     }
 
-    > div {
+    > .info-box__panel {
       padding-bottom: 2em;
 
       h3 {
@@ -174,21 +176,18 @@
       }
     }
   }
-}
 
-.info-box-open {
-  .info-header {
-    background: transparent;
-  }
+  &--open {
+    #{$info-box}__button button::after {
+      transform: rotate(0deg);
+      opacity: 0;
+    }
+  
+    #{$info-box}__container {
+      transform: translateY(0%);
+    }
 
-  .info-button button::after {
-    transform: rotate(0deg);
-    opacity: 0;
-  }
-
-  .info-container {
-    transform: translateY(0%);
-    .info-symbol {
+    #{$info-box}__symbol {
       opacity: 1;
       transform: translate(-50%, -50%);
     }

@@ -1,29 +1,32 @@
 <div class="info-box">
-    <div class="info-header">
-        <div class="info-button">
+    <div class="info-box__header">
+        <div class="info-box__button">
             <button>
                 Info
             </button>
         </div>
-        <div class="info-logo">
-            <?php if($page != 'home'): ?>
-            <a href="<?= $site->url() ?>">
-                <?= $site->file('danz_typo.png') ?>
-            </a>
-
+        <div class="info-box__logo">
+            <?php if ($page != 'home'): ?>
+                <a href="<?= $site->url() ?>">
+                    <?= $site->file('danz_typo.png') ?>
+                </a>
             <?php endif ?>
 
         </div>
     </div>
-    <div class="info-container">
-        <div class="info-symbol">
+    <div class="info-box__container">
+        <div class="info-box__symbol">
             <?= $site->file('danz_symbol.png') ?>
         </div>
-        <div>
-            <h3> <?= $site->customfield_title() ?></h3>
+        <div class="info-box__panel">
+            <?php if ($site->customfield_title()): ?>
+                <h3> <?= $site->customfield_title() ?></h3>
+            <?php endif ?>
+            <?php if ($site->customField()->isNotEmpty()): ?>
             <?= $site->customField()->kirbytext() ?>
+            <?php endif ?>
         </div>
-        <div>
+        <div class="info-box__panel">
             <div>
                 <h3>Contact</h3>
                 <ul>
@@ -58,7 +61,7 @@
             </div>
 
         </div>
-        <div>
+        <div class="info-box__panel">
             <div>
                 <h3>Address</h3>
                 <p>
