@@ -16,7 +16,16 @@
 <div class="main-container" id="product">
 
     <article>
-        <?php $product = $page ?>
+        <?php
+        $product = $page;
+        $availabilityStatus = trim((string)$product->availability_status()->value());
+
+        if ($availabilityStatus === '') {
+            $availabilityStatus = 'available';
+        }
+
+        $canAddToCart = $availabilityStatus === 'available';
+        ?>
         <main class="snipcart-overwrite" role="main">
             <div class="product-details">
                 <div class="product-header">
@@ -28,7 +37,7 @@
                         <?php endif ?>
                         <h1 class="title"><?= $product->name() ?></h1>
                     </div>
-                    <?php if ($product->availability_status()->isEmpty()) : ?>
+                    <?php if ($canAddToCart) : ?>
                         <p class="price price-desktop">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
                     <?php endif ?>
 
@@ -36,9 +45,9 @@
                 <div class="product-images">
 
                     <div class="swiper swiper-collection noLoop">
-                        <?php if ($product->availability_status()->isNotEmpty()) : ?>
+                        <?php if (!$canAddToCart) : ?>
                             <div class="product-availability">
-                                <p><?= $product->availability_status() ?></p>
+                                <p><?= $availabilityStatus ?></p>
                             </div>
                         <?php endif ?>
                         <div class="swiper-wrapper">
@@ -57,7 +66,7 @@
                 </div>
                 <div class="product-description">
                     <div>
-                        <?php if ($product->availability_status()->isEmpty()) : ?>
+                        <?php if ($canAddToCart) : ?>
                             <p class="price price-mobile">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?>
                             </p>
                         <?php endif ?>
@@ -129,8 +138,8 @@
                         </ul>
                     </div>
 
-                    <?php if ($product->available()->isTrue() || $product->availability_status()->isEmpty()) : ?>
-                        <button class="add-to-cart-btn snipcart-add-item" data-item-name="<?= $product->name() ?>" data-item-id="<?= $product->Identifier() ?>" data-item-url="<?= $product->url() ?>" data-item-image="<?= $product->image()->url() ?>" data-item-price="<?= $product->price() ?>" data-item-url="<?= $product->url() ?>" data-item-description="<?= $product->description() ?>" data-item-custom1-name="Size" data-item-custom1-options="<?= str_replace(', ', '|', $product->sizes())  ?>" data-item-shippable="<?= $product->available() ?>" data-item-custom1-required="true">
+                    <?php if ($canAddToCart) : ?>
+                        <button class="add-to-cart-btn snipcart-add-item" data-item-name="<?= $product->name() ?>" data-item-id="<?= $product->Identifier() ?>" data-item-url="<?= $product->url() ?>" data-item-image="<?= $product->image()->url() ?>" data-item-price="<?= $product->price() ?>" data-item-url="<?= $product->url() ?>" data-item-description="<?= $product->description() ?>" data-item-custom1-name="Size" data-item-custom1-options="<?= str_replace(', ', '|', $product->sizes())  ?>" data-item-shippable="<?= $canAddToCart ? 'true' : 'false' ?>" data-item-custom1-required="true">
                             Add to Cart
                         </button>
                     <?php endif ?>

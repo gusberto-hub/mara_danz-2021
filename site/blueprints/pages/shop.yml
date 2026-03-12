@@ -11,7 +11,7 @@ tabs:
         type: pages
         layout: cardlets
         status: listed
-        info: "{{ page.Identifier }} · {{ page.Price }} CHF"
+        info: "{{ page.Price }} CHF"
         image:
           ratio: 4/5
           cover: true
@@ -20,7 +20,7 @@ tabs:
         type: pages
         layout: cardlets
         status: drafts
-        info: "{{ page.Identifier }} · {{ page.Price }} CHF"
+        info: "{{ page.Price }} CHF"
         template: product
 
   info:
