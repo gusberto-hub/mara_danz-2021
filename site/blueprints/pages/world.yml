@@ -32,34 +32,6 @@ columns:
 
   - width: 1/2
     sections:
-      reloved:
-        type: fields
-        fields:
-          headline2:
-            label: Headline
-            type: text
-          paragraph2:
-            label: Text
-            type: textarea
-          picture_static_2:
-            label: Static Picture
-            type: files
-            layout: cards
-            size: medium
-            multiple: false
-            image:
-              back: white
-          picture_flow_2:
-            label: Flowing Picture
-            type: files
-            layout: cards
-            size: medium
-            multiple: false
-            image:
-              back: white
-
-  - width: 1/1
-    sections:
       files:
         headline: All Files
         type: files

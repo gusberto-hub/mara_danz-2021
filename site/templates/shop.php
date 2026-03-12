@@ -1,5 +1,5 @@
-<?php snippet('header') ?>
-<?php snippet('navigation') ?>
+<?php snippet('layout', slots: true) ?>
+<?php slot() ?>
 <header class="header-shop">
     <div class="sub-menu sub-menu-shop">
         <ul>
@@ -44,6 +44,13 @@
     <article>
         <div class="teaser cf products-grid">
             <?php foreach ($products as $product) : ?>
+                <?php
+                $availabilityStatus = trim((string)$product->availability_status()->value());
+                if ($availabilityStatus === '') {
+                    $availabilityStatus = 'available';
+                }
+                $canAddToCart = $availabilityStatus === 'available';
+                ?>
                 <a href="<?= $product->url() ?>" class="product">
                     <?php if ($product->images()) :
                         $images = $product->images()->sortBy('sort') ?>
@@ -63,14 +70,9 @@
                                     <img loading="lazy" width="350" height="525" src="<?= $product->secondaryimage()->toFile()->thumb($options = ['width' => 550])->url() ?>" alt="<?= $product->name() ?> secondary image" />
                                 </picture>
                             <?php endif ?>
-                            <?php if ($product->availability_status() == 'sold out') : ?>
+                            <?php if (!$canAddToCart) : ?>
                                 <div class="product-not-available">
-                                    <p>sold out</p>
-                                </div>
-                            <?php endif ?>
-                            <?php if ($product->availability_status() == 'coming soon') : ?>
-                                <div class="product-not-available">
-                                    <p>coming soon</p>
+                                    <p><?= $availabilityStatus ?></p>
                                 </div>
                             <?php endif ?>
                         </div>
@@ -79,7 +81,7 @@
 
                     <div class="product-info">
                         <h2 class="product-name"><?= $product->name()->html() ?></h2>
-                        <?php if ($product->availability_status() != 'coming soon') : ?>
+                        <?php if ($canAddToCart) : ?>
                             <p class="product-price">CHF <?= number_format($product->price()->toFloat(), 0, "", "'")  ?></p>
                         <?php endif ?>
                     </div>
@@ -88,7 +90,7 @@
                 <div hidden>
                     <?php $sizes =  $product->sizes()->split();
                     ?>
-                    <button class="snipcart-add-item" data-item-name="<?= $product->name() ?>" data-item-id="<?= $product->Identifier() ?>" data-item-url="<?= $product->url() ?>" data-item-image="<?= $product->image()->url() ?>" data-item-price="<?= $product->price() ?>" data-item-url="<?= $product->url() ?>" data-item-description="<?= $product->description() ?>" data-item-custom1-name="Size" data-item-custom1-options="<?php foreach ($sizes as $size) : ?><?= $size ?>|<?php endforeach ?>" data-item-shippable="<?= $product->available() ?>" data-item-custom1-required="true">
+                    <button class="snipcart-add-item" data-item-name="<?= $product->name() ?>" data-item-id="<?= $product->Identifier() ?>" data-item-url="<?= $product->url() ?>" data-item-image="<?= $product->image()->url() ?>" data-item-price="<?= $product->price() ?>" data-item-url="<?= $product->url() ?>" data-item-description="<?= $product->description() ?>" data-item-custom1-name="Size" data-item-custom1-options="<?php foreach ($sizes as $size) : ?><?= $size ?>|<?php endforeach ?>" data-item-shippable="<?= $canAddToCart ? 'true' : 'false' ?>" data-item-custom1-required="true">
                         Add to Cart
                     </button>
                 </div>
@@ -98,4 +100,5 @@
 </div>
 <cart isSideCart="true" editingCart="true"> </cart>
 
-<?php snippet('footer') ?>
+<?php endslot() ?>
+<?php endsnippet() ?>

@@ -37,6 +37,8 @@
       font-size: var(--font-title);
       z-index: -1;
       margin-bottom: var(--space-xxxs);
+      hyphens: auto;
+
       @include breakpoint(sm) {
         top: 3rem;
       }

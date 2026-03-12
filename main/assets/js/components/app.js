@@ -1,7 +1,7 @@
 "use strict";
 
 const filterAccordion = document.querySelector(".filter-accordion");
-const infoButtons = document.querySelectorAll(".info-button");
+const infoButtons = document.querySelectorAll(".info-box__button");
 
 // Calculate Viewport height for VH
 function resetHeight() {
@@ -17,7 +17,7 @@ resetHeight();
 
 for (let infoButton of infoButtons) {
   infoButton.onclick = () => {
-    document.querySelector(".info-box").classList.toggle("info-box-open");
+    document.querySelector(".info-box").classList.toggle("info-box--open");
   };
 }
 

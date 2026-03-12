@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "gulp": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp watch"
   },
   "author": "Amber Creative Lab <info@ambercreative.co>",
   "license": "MIT",
