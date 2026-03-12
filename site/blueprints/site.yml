@@ -7,7 +7,42 @@ tabs:
     columns:
       - width: 1/2
         sections:
-          fields:
+          listed_pages:
+            type: pages
+            headline: Published Pages
+            # status: listed
+            layout: list
+            size: medium
+            query: site.children.filterBy('intendedTemplate', 'not in', ['home', 'error'])
+            info: "{{ page.intendedTemplate }}"
+            create: false
+          # unlisted_pages:
+          #   type: pages
+          #   headline: Unlisted Pages
+          #   status: unlisted
+          #   layout: list
+          #   size: medium
+          #   query: site.children.unlisted.filterBy('intendedTemplate', 'not in', ['home', 'error'])
+          #   info: "{{ page.intendedTemplate }}"
+          #   create: false
+          # draft_pages:
+          #   type: pages
+          #   headline: Drafts
+          #   status: draft
+          #   layout: list
+          #   size: small
+          #   query: site.children.drafts.filterBy('intendedTemplate', 'not in', ['home', 'error'])
+          #   info: "{{ page.intendedTemplate }}"
+          #   create: false
+          files:
+            headline: Site Files
+            type: files
+            layout: list
+            size: medium
+            help: Be sure to delete the files you don't need anymore.
+      - width: 1/2
+        sections:
+          startscreen_fields:
             type: fields
             fields:
               color:
@@ -15,20 +50,6 @@ tabs:
                 type: color
                 alpha: false
                 default: "#EFCB69"
-          pages:
-            type: pages
-            headline: Pages
-            layout: list
-            size: medium
-            query: site.children.filterBy('intendedTemplate', 'not in', ['home', 'error'])
-            info: "{{ page.Status }}"
-            create: false
-
-      - width: 1/2
-        sections:
-          startscreen_fields:
-            type: fields
-            fields:
               backgroundSettings:
                 label: Background Settings
                 type: headline
@@ -66,14 +87,6 @@ tabs:
                 uploads:
                   template: files-upload
                 multiple: false
-
-      - width: 1/1
-        sections:
-          files:
-            headline: Site Files
-            type: files
-            layout: list
-            size: medium
 
   infobox:
     label: Contact & Footer
