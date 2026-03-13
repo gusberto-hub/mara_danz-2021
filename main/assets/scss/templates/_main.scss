@@ -152,20 +152,20 @@ h6 {
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--info-box-height) + #{$padding-page});
   animation: fadeContainerIn 200ms linear forwards;
 
-  a {
-    transition: color 100ms linear;
-    position: relative;
+  // a {
+  //   transition: color 100ms linear;
+  //   position: relative;
 
-    &:hover {
-      > div + div {
-        @extend .accent-color-difference;
-      }
+  //   &:hover {
+  //     > div + div {
+  //       @extend .accent-color-difference;
+  //     }
 
-      &::after {
-        transform: translateX(0.2em);
-      }
-    }
-  }
+  //     &::after {
+  //       transform: translateX(0.2em);
+  //     }
+  //   }
+  // }
 
   article {
     display: grid;

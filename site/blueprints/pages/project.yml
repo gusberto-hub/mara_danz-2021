@@ -1,0 +1,54 @@
+title: Project
+icon: folder
+
+navigation:
+  status: all
+  sortBy: title asc
+
+columns:
+  - width: 1/2
+    sections:
+      info:
+        type: fields
+        fields:
+          # projecttitle:
+          #   label: Project Title
+          #   type: text
+          #   required: true
+          # subtitle:
+          #   label: Sub Title
+          #   type: text
+          # year:
+          #   label: Year
+          #   type: number
+          # location:
+          #   label: Location
+          #   type: text
+          coverimage:
+            label: Cover Image
+            type: files
+            query: site.index.files
+            layout: cards
+            size: small
+            multiple: false
+            image:
+              cover: true
+              ratio: 2/3
+          layout:
+            label: Content
+            type: layout
+            fieldsets:
+              - heading
+              - text
+              - gallery
+              - video
+
+  - width: 1/2
+    sections:
+      files:
+        headline: Files
+        type: files
+        layout: cards
+        image:
+          ratio: 4/5
+          cover: true

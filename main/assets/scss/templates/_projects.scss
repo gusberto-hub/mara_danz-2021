@@ -1,0 +1,138 @@
+.project-grid {
+    grid-column: 1/-1;
+    padding-top: var(--space-sm);
+    padding: 0;
+}
+
+.project {
+    $project: &;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100svh;
+
+    &__content {
+        position: relative;
+        // z-index: 2;
+    }
+
+    &__title {
+        @extend .heading-font;
+        font-size: 4rem;
+        mix-blend-mode: difference;
+        color: white;
+        padding: var(--space-xxxs);
+    }
+
+    &__thumbnail {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        position: relative;
+
+        &-bg {
+            position: absolute;
+            top: 30%;
+            left: -80%;
+            right: 0%;
+            bottom: 20%;
+            width: 100%;
+            aspect-ratio: 1/1;
+            height: auto;
+            object-fit: cover;
+            filter: blur(40px);
+            z-index: 10;
+            border-radius: 999px;
+            overflow: hidden;
+            will-change: transform;
+            transition: transform 1s ease, filter 300ms ease;
+        }
+
+        &-hover {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: min(36vw, 560px);
+            max-height: 70svh;
+            transform: translate(-50%, -50%) scale(0.98);
+            object-fit: cover;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 10;
+            // transition: opacity 220ms ease, transform 320ms ease, visibility 220ms ease;
+            transition-property: opacity, transform, visibility;
+            transition-duration: 220ms;
+            transition-timing-function: ease;
+            transition-behavior: allow-discrete;
+        }
+    }
+
+    // &__content:has(a:hover) + #{$project}__thumbnail #{$project}__thumbnail-hover {
+    //     opacity: 1;
+    //     visibility: visible;
+    //     transform: translate(-50%, -50%) scale(1);
+    // }
+
+    &__content:has(a:hover) + #{$project}__thumbnail #{$project}__thumbnail-bg {
+        filter: blur(0px);
+    }
+
+    // @media (hover: none) {
+    //     &__thumbnail-hover {
+    //         display: none;
+    //     }
+    // }
+}
+
+.project-nav {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    margin-top: var(--space-md);
+    padding: var(--space-2xs) 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+    border-top: 1px solid var(--color-primary);
+    background: var(--bg-color);
+
+    &__item {
+        min-height: 2.5rem;
+
+        a {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 0.1rem;
+            text-decoration: none;
+        }
+
+        &--next {
+            text-align: right;
+
+            a {
+                align-items: flex-end;
+                margin-left: auto;
+            }
+        }
+    }
+
+    &__label {
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+
+    &__title {
+        @extend .heading-font;
+    }
+}
+
+@keyframes projectThumbnailBg {
+    0% {
+        translate: 0 0;
+    }
+    100% {
+        translate: 10% -20%;
+        scale: 1.1;
+    }
+}

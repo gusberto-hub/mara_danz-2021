@@ -3,15 +3,19 @@
 .info-box {
   $info-box: &;
 
-  width: 100vw;
+  // width: 100vw;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: var(--space-sm);
+  left: var(--space-sm);
+  right: var(--space-sm);
   z-index: 99;
   height: var(--info-box-height);
   background: var(--bg-color);
-  padding: 0 calc(env(safe-area-inset-right) + #{$padding-page}) env(safe-area-inset-bottom)
+  border-radius: 999px;
+  padding: 0 calc(env(safe-area-inset-right) + #{$padding-page})
+    env(safe-area-inset-bottom)
     calc(env(safe-area-inset-left) + #{$padding-page});
+  // backdrop-filter: blur(6px);
 
   & * {
     @extend .body-font;
@@ -23,7 +27,7 @@
     @include breakpoint(sm) {
       text-align: left;
     }
-  };
+  }
 
   &__header {
     width: 100%;
@@ -52,7 +56,9 @@
           right: 1em;
           top: 0.6em;
           transform-origin: center center;
-          transition: transform 200ms ease, opacity 100ms ease 100ms;
+          transition:
+            transform 200ms ease,
+            opacity 100ms ease 100ms;
         }
         //
         &::after {
@@ -87,22 +93,22 @@
     bottom: var(--info-box-height);
     width: 100%;
     height: calc(var(--viewport-height) - var(--info-box-height));
-
+    border-radius: 1rem;
     display: grid;
     gap: $padding-page * 2;
-
     padding: 1em $padding-page;
     background: var(--bg-color);
-    overflow-y: scroll;
-    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
     z-index: -1;
     transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 
     @include breakpoint(sm) {
       grid-template-columns: repeat(4, 1fr);
-      bottom: 0;
+      bottom: 3rem;
       height: max-content;
-      overflow: visible;
+      overflow: hidden;
     }
 
     .info-box__symbol {
@@ -182,9 +188,10 @@
       transform: rotate(0deg);
       opacity: 0;
     }
-  
+
     #{$info-box}__container {
       transform: translateY(0%);
+      opacity: 1;
     }
 
     #{$info-box}__symbol {

@@ -1,0 +1,27 @@
+title: Projects
+icon: grid
+
+sections:
+  published:
+    headline: Published
+    type: pages
+    query: page.children.listed.filterBy('intendedTemplate', 'project')
+    layout: cards
+    size: small
+    image:
+      cover: true
+      ratio: 3/2
+      back: black
+
+  unlisted:
+    headline: Unlisted
+    type: pages
+    query: page.children.unlisted.filterBy('intendedTemplate', 'project')
+    layout: cards
+    size: small
+
+  drafts:
+    headline: Drafts
+    type: pages
+    query: page.children.drafts.filterBy('intendedTemplate', 'project')
+    template: project
