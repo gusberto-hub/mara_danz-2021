@@ -2,6 +2,18 @@
 
 ///// SHOP
 #shop {
+  article {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $padding-page;
+    // margin-bottom: calc(var(--info-box-height) + #{$padding-page});
+    position: relative;
+    max-width: var(--max-content-width);
+
+    @include breakpoint(sm) {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
   .products-grid {
     grid-column: 1/-1;
     display: grid;
@@ -64,7 +76,7 @@
     }
     .product-price {
       color: inherit;
-      font-size: calc(var(--font-body) * 0.8);
+      font-size: calc(var(--font-md) * 0.8);
       padding-top: 0.2em;
     }
   }
@@ -183,7 +195,9 @@
             right: -1em;
             top: 0.6em;
             transform-origin: center center;
-            transition: transform 200ms ease, opacity 100ms ease 100ms;
+            transition:
+              transform 200ms ease,
+              opacity 100ms ease 100ms;
           }
 
           //

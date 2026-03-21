@@ -1,0 +1,196 @@
+@use "../custom-style/variables" as *;
+
+.design-system {
+  --ds-surface: color-mix(in srgb, var(--bg-color) 88%, white);
+  --ds-surface-strong: color-mix(in srgb, var(--bg-color) 82%, white);
+  --ds-border: color-mix(in srgb, var(--color-primary) 25%, transparent);
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm) calc(var(--space-xxl) + var(--info-box-height));
+
+  &__header {
+    margin-bottom: var(--space-xl);
+  }
+
+  &__eyebrow {
+    font-family: $font-body;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+    margin-bottom: var(--space-xxs);
+  }
+
+  &__title {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  &__intro {
+    max-width: 65ch;
+    margin-top: var(--space-sm);
+  }
+
+  &__section {
+    margin-top: var(--space-xl);
+  }
+
+  &__section-title {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: var(--font-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: var(--space-sm);
+
+    @include breakpoint(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__card {
+    border: 1px solid var(--ds-border);
+    background: var(--ds-surface);
+    border-radius: 0.65rem;
+    padding: var(--space-sm);
+  }
+
+  &__label {
+    font-family: $font-body;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.75rem;
+    opacity: 0.75;
+    margin-bottom: var(--space-xxs);
+  }
+
+  &__swatches {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-xs);
+
+    @include breakpoint(sm) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &__swatch {
+    border-radius: 0.6rem;
+    border: 1px solid var(--ds-border);
+    overflow: hidden;
+    background: var(--ds-surface);
+  }
+
+  &__swatch-color {
+    height: 5rem;
+  }
+
+  &__swatch-meta {
+    padding: var(--space-xxs);
+    font-family: $font-body;
+    font-size: 0.78rem;
+  }
+
+  &__type-row {
+    border-top: 1px solid var(--ds-border);
+    padding-top: var(--space-xs);
+    margin-top: var(--space-xs);
+
+    &:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  &__heading-demo {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  &__body-demo {
+    font-family: $font-body;
+    margin: 0;
+  }
+
+  &__spacing-list {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  &__spacing-item {
+    display: grid;
+    grid-template-columns: 12ch 1fr;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: $font-body;
+    font-size: 0.82rem;
+  }
+
+  &__spacing-bar {
+    height: 0.75rem;
+    border-radius: 999px;
+    background: var(--color-primary);
+  }
+
+  &__button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  &__btn {
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--bg-color);
+    border-radius: 999px;
+    padding: 0.45rem 1rem;
+    font-family: $font-body;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.82rem;
+  }
+
+  &__btn--ghost {
+    background: transparent;
+    color: var(--color-primary);
+  }
+
+  &__field {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--color-primary-lighter);
+    background: transparent;
+    padding: 0.35rem 0;
+    font-family: $font-body;
+    font-size: 0.92rem;
+    color: var(--color-primary);
+    outline: none;
+  }
+
+  &__kicker {
+    font-family: $font-body;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.75;
+    margin-bottom: var(--space-xxxs);
+  }
+
+  &__surface-demo {
+    border-radius: 0.6rem;
+    padding: var(--space-sm);
+    border: 1px solid var(--ds-border);
+    background: var(--ds-surface-strong);
+  }
+}

@@ -1,0 +1,16 @@
+title: Design System
+icon: palette
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+sections:
+  notes:
+    type: fields
+    fields:
+      info:
+        label: Info
+        type: info
+        text: "Reference page for typography, color, spacing and basic UI patterns."

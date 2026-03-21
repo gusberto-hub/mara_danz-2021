@@ -27,13 +27,22 @@ columns:
           coverimage:
             label: Cover Image
             type: files
-            query: site.index.files
             layout: cards
             size: small
             multiple: false
             image:
-              cover: true
-              ratio: 2/3
+              cover: false
+              back: grey
+            width: 1/2
+          secondaryimage:
+            label: Secondary Image
+            type: files
+            layout: cards
+            size: small
+            multiple: false
+            image:
+              back: grey
+            width: 1/2
           layout:
             label: Content
             type: layout
@@ -50,5 +59,4 @@ columns:
         type: files
         layout: cards
         image:
-          ratio: 4/5
-          cover: true
+          back: grey

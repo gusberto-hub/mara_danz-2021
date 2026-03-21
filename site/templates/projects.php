@@ -1,7 +1,7 @@
 <?php snippet('layout', slots: true) ?>
 <?php slot() ?>
 
-<div class="main-container project-grid">
+<div class="main-container project-list">
     <?php
     $projects = $page->children()
         ->listed()
@@ -21,27 +21,21 @@
             $hoverCover = $cover;
         }
         ?>
-        <div class="project">
-            <div class="project__content">
+        <div class="project-item">
+            <div class="project-item__content">
                 <a href="<?= $project->url() ?>">
-                    <h3 class="project__title"><?= $project->projecttitle()->or($project->title()) ?></h3>
+                    <h3 class="project-item__title"><?= $project->projecttitle()->or($project->title()) ?></h3>
                 </a>
-                <!-- <p>
-                    <?= $project->projecttitle()->or($project->title()) ?>
-                    <?php if ($project->subtitle()->isNotEmpty()) : ?>, <?= $project->subtitle() ?><?php endif ?>
-                    <?php if ($project->location()->isNotEmpty()) : ?>, <?= $project->location() ?><?php endif ?>
-                    <?php if ($project->year()->isNotEmpty()) : ?>, <?= $project->year() ?><?php endif ?>
-                </p> -->
             </div>
-            <div class="project__thumbnail">
+            <div class="project-item__thumbnail">
                 <?php if ($cover) : ?>
-                    <img class="project__thumbnail-bg" src="<?= $hoverCover->thumb(['width' => 900, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
+                    <img class="project-item__thumbnail-bg" src="<?= $hoverCover->thumb(['width' => 900, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
                 <?php endif ?>
                 <?php if ($cover) : ?>
-                    <img class="project__thumbnail-image" src="<?= $cover->thumb(['width' => 900, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
+                    <img class="project-item__thumbnail-image" src="<?= $cover->thumb(['width' => 900, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
                 <?php endif ?>
                 <?php if ($hoverCover) : ?>
-                    <img class="project__thumbnail-hover" src="<?= $hoverCover->thumb(['width' => 1200, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
+                    <img class="project-item__thumbnail-hover" src="<?= $hoverCover->thumb(['width' => 1200, 'format' => 'webp'])->url() ?>" alt="<?= $project->projecttitle()->or($project->title())->esc() ?>">
                 <?php endif ?>
             </div>
         </div>
@@ -53,7 +47,7 @@
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (window.matchMedia('(pointer: coarse)').matches) return;
 
-        const images = [...document.querySelectorAll('.project__thumbnail-bg')];
+        const images = [...document.querySelectorAll('.project-item__thumbnail-bg')];
         if (!images.length) return;
 
         const visible = new Set();

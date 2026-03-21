@@ -2,30 +2,33 @@
 
 /** @var \Kirby\Cms\Block $block */ ?>
 <?php if ($block->url()->isNotEmpty()) : ?>
-  <div class="block">
-    <div class="campaign-video width-100%">
-      <figure class="">
+  <!-- <div class="campaign-video"> -->
+    <figure class="campaign-video">
         <?= video($block->url(), [
           'vimeo' => [
             'autoplay' => 0,
             'controls' => 0,
-            'mute'     => 0
+            'mute'     => 0,
+            'title'    => 0,
+            'byline'   => 0,
+            'portrait' => 0,
+            'dnt'      => 1
           ],
           'youtube' => [
             'autoplay' => 0,
-            'controls' => 2,
-            'mute'     => 1,
-            'color' => 'white',
+            'controls' => 0,
+            'mute'     => 0,
+            'disablekb' => 1,
             'iv_load_policy' => 3,
-            'modestbranding' => 1,
             'rel' => 0,
-            'showinfo' => 0,
+            'playsinline' => 1,
+            'fs' => 1,
+            'hl' => 'en',
           ],
         ]) ?>
         <?php if ($block->caption()->isNotEmpty()) : ?>
           <figcaption><?= $block->caption() ?></figcaption>
         <?php endif ?>
-      </figure>
-    </div>
-  </div>
+    </figure>
+  <!-- </div> -->
 <?php endif ?>
