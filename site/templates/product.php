@@ -155,7 +155,7 @@
         </main>
     </article>
 </div>
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper@12.1.2/swiper-bundle.min.js"></script>
 <script>
     const button = document.querySelector('.snipcart-add-item')
     let sizes = document.querySelectorAll('input[name="size"]');

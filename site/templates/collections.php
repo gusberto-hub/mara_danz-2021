@@ -61,7 +61,7 @@
 
 </main>
 
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/swiper@12.1.2/swiper-bundle.min.js"></script>
 
 <?php endslot() ?>
 <?php endsnippet() ?>

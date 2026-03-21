@@ -47,7 +47,7 @@
         <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
         <?= Bnomei\Fingerprint::css('assets/css/snipcart.css'); ?>
     <?php endif ?>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@12.1.2/swiper-bundle.min.css" />
     <?= Bnomei\Fingerprint::css('assets/css/style.css'); ?>
     <title><?= $site->title() ?>
         <?php if ($page->parent() == 'shop') : ?>

@@ -7,7 +7,6 @@ const autoprefixer = require("autoprefixer");
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
 const terser = require("gulp-terser");
-const connect = require("gulp-connect-php");
 const projectPath = "https://mara-danz.project.test"; // DDEV project URL used by BrowserSync proxy
 
 // js file paths
@@ -63,12 +62,10 @@ gulp.task("scripts", function () {
 
 gulp.task(
   "watch",
-  gulp.series(["sass", "scripts"], function () {
-    connect.server({}, function () {
-      browserSync({
-        proxy: projectPath,
-        notify: false,
-      });
+  gulp.series(["sass", "scripts"], function watchDev() {
+    browserSync.init({
+      proxy: projectPath,
+      notify: false,
     });
     gulp.watch("**/*.php", gulp.series(reload));
     gulp.watch(scssFilesPath, gulp.series(["sass"]));
