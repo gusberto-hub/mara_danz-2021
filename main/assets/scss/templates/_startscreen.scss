@@ -14,18 +14,15 @@
     transform: translate(-50%, -50%);
     z-index: 9;
     transition: inset 400ms ease;
-    width: 80vw;
-    height: calc(var(--viewport-height) * 0.7);
+    // width: 80vw;
+    // height: calc(var(--viewport-height) * 0.7);
     pointer-events: none;
+    
     img {
       object-fit: contain;
       margin: 0 auto;
       height: 100%;
-    }
-
-    @include breakpoint(sm) {
-      // left: 25%;
-      // top: 50%;
+      view-transition-name: logo;
     }
   }
 

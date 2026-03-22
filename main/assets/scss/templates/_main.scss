@@ -86,10 +86,10 @@ h5 {
 }
 
 a {
-  color: var(--color-bg);
-  opacity: 1;
-  text-decoration: none;
-  position: relative;
+  // color: var(--color-bg);
+  // opacity: 1;
+  // text-decoration: none;
+  // position: relative;
 }
 
 img {
@@ -148,7 +148,7 @@ h6 {
   left: env(safe-area-inset-left);
   right: env(safe-area-inset-right);
   padding-inline: $padding-page;
-  padding-top: $padding-top;
+  // padding-top: $padding-top;
   padding-bottom: calc(env(safe-area-inset-bottom) + var(--info-box-height) + #{$padding-page});
   animation: fadeContainerIn 200ms linear forwards;
 

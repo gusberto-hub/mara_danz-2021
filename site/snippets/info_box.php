@@ -1,5 +1,5 @@
 <div class="info-box">
-    <div class="info-box__header">
+    <div class="info-box__bar">
         <div class="info-box__button">
             <button>
                 Info
@@ -11,7 +11,6 @@
                     <?= $site->file('danz_typo.png') ?>
                 </a>
             <?php endif ?>
-
         </div>
     </div>
     <div class="info-box__container">

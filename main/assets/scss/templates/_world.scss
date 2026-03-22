@@ -2,6 +2,7 @@
 
 .world-page {
   padding: 0;
+  margin-top: calc($header-height * -1);
 
   &__section {
     display: grid;
@@ -53,12 +54,13 @@
     grid-area: headline;
     margin-block: var(--space-xxl) var(--space-sm);
     padding-inline: var(--space-sm);
-
+    
     @include breakpoint(sm) {
       margin-top: var(--space-sm);
     }
-
+    
     img {
+      view-transition-name: logo;
       height: 3rem;
 
       @include breakpoint(sm) {

@@ -25,11 +25,11 @@
     }
   };
 
-  &__header {
+  &__bar {
     width: 100%;
     height: stretch;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     #{$info-box}__button {
@@ -66,6 +66,9 @@
 
     .info-box__logo {
       transition: all 200ms ease;
+      view-transition-name: main-logo;
+      display: none;
+      
       img {
         margin-top: 0.1em;
         height: 0.85em;
