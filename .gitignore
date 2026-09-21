@@ -57,3 +57,8 @@ Icon
 /kirby
 
 node_modules
+
+# Plugin local Composer artifacts
+# --------------------------------
+/site/plugins/kirby3-fingerprint/vendor/
+/site/plugins/kirby3-fingerprint/tests/
